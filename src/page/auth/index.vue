@@ -1,10 +1,10 @@
 <template>
   <div class="relative-container">
     <div class="absolute-child"></div>
-    <img :src="authBackground" class="background-image" style="height: 100%; margin-top: 100px" />
+    <img :src="authBackground" class="background-image" style="height: 100%; " />
     <!-- Centered component -->
     <div class="centered-component">
-      <component :is="isLoginMode ? 'AuthLogin' : 'AuthSignUp'" @switch-to="toggleAuthMode" />
+      <component :is="isLoginMode ? 'AuthLogin' : 'SignUp'" @switch-to="toggleAuthMode" />
     </div>
   </div>
 </template>
