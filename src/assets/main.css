@@ -1,3 +1,15 @@
+@font-face {
+  font-family: 'Calson';
+  src: url('@/static/fonts/ACaslonPro-Regular/ACaslonPro-Regular.woff2') format('woff2'),
+  url('@/static/fonts/ACaslonPro-Regular/ACaslonPro-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Apply the font globally */
+body {
+  font-family: 'YourFontName', sans-serif;
+}
 
 html, body {
   margin: 0;
