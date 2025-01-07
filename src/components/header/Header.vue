@@ -71,7 +71,9 @@ defineProps({
         <RouterLink class="header__nav__link" to="/Bespoke">BESPOKE</RouterLink>
         <RouterLink class="header__nav__link" to="/by-appointment">BY APPOINTMENT</RouterLink>
       </div>
-      <img :src="Logo" alt="Logo" width="114px" height="52px" style="transform: translateY(-15px)"/>
+      <router-link class="header__nav__link" to="/">
+        <img :src="Logo" alt="Logo" width="114px" height="52px" style="transform: translateY(-15px)" />
+      </router-link>
       <div style="display: flex; flex-direction: row; gap: 32px; position: absolute; right: 0">
         <RouterLink class="header__nav__link" to="/about-us">ABOUT US</RouterLink>
         <RouterLink class="header__nav__link" to="/our-world">OUR WORLD</RouterLink>
@@ -101,7 +103,8 @@ defineProps({
       style="
         position: absolute;
         z-index: 10;
-        top: 116px;
+        top: 80px;
+        padding-top: 20px;
         width: 356px;
         height: 619px;
         background-color: #0b0b0b;

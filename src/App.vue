@@ -10,7 +10,7 @@ const checkIfMobile = () => {
 }
 
 onMounted(() => {
-  checkIfMobile()
+  checkIfMobile ()
   window.addEventListener('resize', checkIfMobile)
 })
 
@@ -20,11 +20,27 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div class="">
+  <div class="layout">
     <!-- header -->
     <Header :is-mobile="isMobile" />
-    <!--    <router-view />-->
-
+    <div class="content">
+      <router-view />
+    </div>
     <Footer :is-mobile="isMobile" />
   </div>
 </template>
+
+<style scoped>
+.layout {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Content area allows scrolling if content is large */
+.content {
+  flex: 1;
+  overflow-y: auto;
+  background-color: #000;
+}
+</style>

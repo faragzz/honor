@@ -1,7 +1,7 @@
 <template>
   <div class="signup-form" :style="formStyle">
     <div style="margin-top: 51px; margin-bottom: 51px; margin-left: 40px; margin-right: 40px">
-      <p style="display: flex; justify-content: center; font-size: 18px; margin-bottom: 48px">
+      <p style="display: flex; justify-content: center; font-size: 18px; margin-bottom: 48px;color:white">
         Sign Up
       </p>
       <form @submit.prevent="handleSubmit">
@@ -128,7 +128,7 @@ export default {
     formStyle() {
       return {
         width: this.isMobile ? '500px' : '614px', // Set width based on isMobile
-        height: this.isMobile ? 'auto' : '910px', // Adjust height if needed
+        height: this.isMobile ? 'auto' : '1000px', // Adjust height if needed
       }
     },
   },
@@ -179,11 +179,10 @@ export default {
 
 <style scoped lang="scss">
 .signup-form {
-  margin: 0 auto;
+  margin-top: 30px;
   border-radius: 5px;
   background-color: #000;
   padding: 20px;
-
   .txtColor {
     color: #e6e6e6;
   }
@@ -221,11 +220,6 @@ export default {
 
   .password-container {
     position: relative;
-
-    input {
-      padding-right: 40px;
-    }
-
     .toggle-password {
       position: absolute;
       right: 10px;

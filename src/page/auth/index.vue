@@ -1,19 +1,19 @@
 <template>
-  <div class="relative-container">
+  <div class="relative-container" :style="isLoginMode ? { overflowY: 'hidden' }:{}">
     <div class="absolute-child"></div>
-    <img :src="authBackground" class="background-image" style="height: 100%; " />
+    <img :src="authBackground" class="background-image" />
     <!-- Centered component -->
-    <div class="centered-component">
+    <div class="scrollable-container">
       <component :is="isLoginMode ? 'AuthLogin' : 'SignUp'" @switch-to="toggleAuthMode" />
     </div>
   </div>
 </template>
 
 <script>
-import { ref } from 'vue';
-import authBackground from '../../assets/auth/authBackground.png';
-import AuthLogin from '../../components/Auth/Login.vue';
-import SignUp from '../../components/Auth/SignUp.vue';
+import { ref } from "vue";
+import authBackground from "../../assets/auth/authBackground.png";
+import AuthLogin from "../../components/Auth/Login.vue";
+import SignUp from "../../components/Auth/SignUp.vue";
 
 export default {
   components: {
@@ -21,52 +21,27 @@ export default {
     SignUp,
   },
   setup() {
-    // Reactive state
-    const hasToken = ref(false);
     const isLoginMode = ref(true);
-    const otp = ref(false);
-    const isAuth = ref(true);
     const authBackgroundImage = authBackground;
 
-    // Methods
     const toggleAuthMode = () => {
       isLoginMode.value = !isLoginMode.value;
     };
 
-    const openOtp = () => {
-      hasToken.value = true;
-      isLoginMode.value = false;
-      otp.value = true;
-    };
-
     return {
-      hasToken,
       isLoginMode,
-      otp,
-      isAuth,
       authBackground: authBackgroundImage,
       toggleAuthMode,
-      openOtp,
     };
   },
 };
 </script>
 
 <style scoped>
-html,
-body {
-  margin: 0;
-  padding: 0;
-}
-
 .relative-container {
   position: relative;
   width: 100%;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
+  height: 100%;
 }
 
 .absolute-child {
@@ -74,24 +49,37 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 140vh;
   background-color: rgba(0, 0, 0, 0.79);
   z-index: 1;
 }
 
 .background-image {
-  height: 100vh;
   width: 100%;
+  height: 140vh;
   object-fit: cover;
   position: absolute;
   top: 0;
   left: 0;
 }
 
-.centered-component {
-  margin-top: 200px;
+.scrollable-container {
+  position: relative;
   z-index: 2;
   display: flex;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
+  padding: 20px;
+  width: 100%;
+  height: auto;
+  box-sizing: border-box;
+  overflow-x: auto;
+}
+
+.centered-component {
+  width: 100%;
+  max-width: 450px;
+  margin: auto;
 }
 </style>

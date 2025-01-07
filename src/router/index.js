@@ -3,7 +3,7 @@ import Auth from '../page/auth/index.vue'
 import Test from '../page/test.vue'
 const routes = [
   { path: '/', name: 'Auth', component: Auth },
-  { path: '/x', name: 'x', component: Test },
+  // { path: '/otp', name: 'x', component:  },
 ]
 
 const router = createRouter({

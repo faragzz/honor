@@ -1,6 +1,6 @@
 <template>
   <div class="login-form" :style="formStyle">
-    <div style="margin-top: 96px; margin-bottom: 96px; margin-left: 40px; margin-right: 40px;">
+    <div style="margin-bottom: 96px; margin-left: 40px; margin-right: 40px;">
       <p style="display: flex; justify-content: center; font-size: 18px; margin-bottom: 48px">Login</p>
       <form @submit.prevent="handleSubmit">
         <div class="form-group">
@@ -15,7 +15,7 @@
           />
         </div>
         <div class="form-group">
-          <label class="txtColor" for="password" style="font-size: 14px;line-height: 16px;width: 88px;height: 16px">Password</label>
+          <label class="txtColor" for="password" style="font-size: 14px;line-height: 16px;height: 16px">Password</label>
           <div class="password-container" >
             <input
               :type="showPassword ? 'text' : 'password'"
@@ -109,7 +109,7 @@ export default {
 
 <style scoped lang="scss">
 .login-form {
-  margin: 0 auto;
+  margin-top: 30px;
   border-radius: 5px;
   background-color: #000;
   h2 {
@@ -140,9 +140,6 @@ export default {
   .password-container {
     position: relative;
 
-    input {
-      padding-right: 40px;
-    }
 
     .toggle-password {
       position: absolute;
