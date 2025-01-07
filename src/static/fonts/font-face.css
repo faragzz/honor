@@ -1,0 +1,7 @@
+@font-face {
+  font-family: 'Honor2';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('/fonts/Honor-Bold/Honor-Bold.woff2') format('woff2');
+}
