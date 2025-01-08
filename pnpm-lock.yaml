@@ -8,9 +8,15 @@ importers:
 
   .:
     dependencies:
+      '@egjs/vue3-flicking':
+        specifier: ^4.12.0
+        version: 4.12.0(vue@3.5.13(typescript@5.6.3))
       pinia:
         specifier: ^2.3.0
         version: 2.3.0(typescript@5.6.3)(vue@3.5.13(typescript@5.6.3))
+      swiper:
+        specifier: ^11.2.0
+        version: 11.2.0
       vue:
         specifier: ^3.5.13
         version: 3.5.13(typescript@5.6.3)
@@ -221,6 +227,12 @@ packages:
   '@bufbuild/protobuf@2.2.3':
     resolution: {integrity: sha512-tFQoXHJdkEOSwj5tRIZSPNUuXK3RaR7T1nUrPgbYX1pUbvqqaaZAsfo+NXBPsz5rZMSKVFrgK1WL8Q/MSLvprg==}
 
+  '@cfcs/core@0.0.24':
+    resolution: {integrity: sha512-feB38qu+eDk0Pggh/yR7gjaNmvUYA2uCxHP3Pz2MLE4LZ/9jPdtu8bzCSI47yTEhWyZCF5Pk698hdz8IN2mTjA==}
+
+  '@cfcs/core@0.1.0':
+    resolution: {integrity: sha512-kvYX0RpL45XTHJ5sW7teNbKeAa7pK3nNqaJPoFfZDPTIBJOkTtRD3QhkBG+O3Hu69a8xeMoPvF6y/RtJ6JUOdA==}
+
   '@colors/colors@1.5.0':
     resolution: {integrity: sha512-ooWCrlZP11i8GImSjTHYHLkvFDP48nS4+204nGb1RiX/WXYHmJA2III9/e2DWVabCESdW7hBAEzHRqUn9OUVvQ==}
     engines: {node: '>=0.1.90'}
@@ -231,6 +243,29 @@ packages:
 
   '@cypress/xvfb@1.2.4':
     resolution: {integrity: sha512-skbBzPggOVYCbnGgV+0dmBdW/s77ZkAOXIC1knS8NagwDjBrNC1LuXtQJeiN6l+m7lzmHtaoUw/ctJKdqkG57Q==}
+
+  '@egjs/agent@2.4.4':
+    resolution: {integrity: sha512-cvAPSlUILhBBOakn2krdPnOGv5hAZq92f1YHxYcfu0p7uarix2C6Ia3AVizpS1SGRZGiEkIS5E+IVTLg1I2Iog==}
+
+  '@egjs/axes@3.9.1':
+    resolution: {integrity: sha512-vaqUe/boRDk/A4TjiPtMv+lf7c4Q2jTER/Hw4I61NiJUyPftlZjaP4cteBCQejFyZmzimmA2W0cLmYZHTjBY8A==}
+
+  '@egjs/component@3.0.5':
+    resolution: {integrity: sha512-cLcGizTrrUNA2EYE3MBmEDt2tQv1joVP1Q3oDisZ5nw0MZDx2kcgEXM+/kZpfa/PAkFvYVhRUZwytIQWoN3V/w==}
+
+  '@egjs/flicking@4.12.0':
+    resolution: {integrity: sha512-HSducaQozc24HAxR5RfI2pRSqxZI1GxudAL52I7yoUj2yYCmY76Vhld9QzrTSWHFLfj7muv+XXB7Lv85HwZahg==}
+
+  '@egjs/imready@1.4.1':
+    resolution: {integrity: sha512-JIOBs4lB7FYdsKi5uvz2j3SObX8eShtZjtqlOH41tm185aJOQZwiKBK8+V4MxzG4X6DqVhpdN8UcuVwBbElfsg==}
+
+  '@egjs/list-differ@1.0.1':
+    resolution: {integrity: sha512-OTFTDQcWS+1ZREOdCWuk5hCBgYO4OsD30lXcOCyVOAjXMhgL5rBRDnt/otb6Nz8CzU0L/igdcaQBDLWc4t9gvg==}
+
+  '@egjs/vue3-flicking@4.12.0':
+    resolution: {integrity: sha512-4N1tPmK2Emf1N5zHFnIHMH7xw0/xzO97DQwSqTIliIYn036MkxRmH7l/azT2Qw/RaHEmgiWLVmkotwokbIXb9A==}
+    peerDependencies:
+      vue: ^3.0.0
 
   '@esbuild/aix-ppc64@0.24.2':
     resolution: {integrity: sha512-thpVCb/rhxE/BnMLQ7GReQLLN8q9qbHmI55F4489/ByVg2aQaQ6kbcLb6FHkocZzQhxc4gx0sCk0tJkKBFzDhA==}
@@ -2163,6 +2198,10 @@ packages:
   svg-tags@1.0.0:
     resolution: {integrity: sha512-ovssysQTa+luh7A5Weu3Rta6FJlFBBbInjOh722LIt6klpU2/HtdUbszju/G4devcvk8PGt7FCLv5wftu3THUA==}
 
+  swiper@11.2.0:
+    resolution: {integrity: sha512-rjjAKgDEs+grR2eQshVDCcE4KNPC7CI294nfcbV9gE8WCsLdvOYXDeZKUYevqAZZp8j5hE7kpT3dAGVKFBWlxQ==}
+    engines: {node: '>= 4.7.0'}
+
   sync-child-process@1.0.2:
     resolution: {integrity: sha512-8lD+t2KrrScJ/7KXCSyfhT3/hRq78rC0wBFqNJXv3mZyn6hW2ypM05JmlSvtqRbeq6jqA94oHbxAr2vYsJ8vDA==}
     engines: {node: '>=16.0.0'}
@@ -2638,6 +2677,14 @@ snapshots:
 
   '@bufbuild/protobuf@2.2.3': {}
 
+  '@cfcs/core@0.0.24':
+    dependencies:
+      '@egjs/component': 3.0.5
+
+  '@cfcs/core@0.1.0':
+    dependencies:
+      '@egjs/component': 3.0.5
+
   '@colors/colors@1.5.0':
     optional: true
 
@@ -2668,6 +2715,36 @@ snapshots:
       lodash.once: 4.1.1
     transitivePeerDependencies:
       - supports-color
+
+  '@egjs/agent@2.4.4': {}
+
+  '@egjs/axes@3.9.1':
+    dependencies:
+      '@cfcs/core': 0.1.0
+      '@egjs/agent': 2.4.4
+      '@egjs/component': 3.0.5
+
+  '@egjs/component@3.0.5': {}
+
+  '@egjs/flicking@4.12.0':
+    dependencies:
+      '@egjs/axes': 3.9.1
+      '@egjs/component': 3.0.5
+      '@egjs/imready': 1.4.1
+      '@egjs/list-differ': 1.0.1
+
+  '@egjs/imready@1.4.1':
+    dependencies:
+      '@cfcs/core': 0.0.24
+      '@egjs/component': 3.0.5
+
+  '@egjs/list-differ@1.0.1': {}
+
+  '@egjs/vue3-flicking@4.12.0(vue@3.5.13(typescript@5.6.3))':
+    dependencies:
+      '@egjs/component': 3.0.5
+      '@egjs/flicking': 4.12.0
+      vue: 3.5.13(typescript@5.6.3)
 
   '@esbuild/aix-ppc64@0.24.2':
     optional: true
@@ -4541,6 +4618,8 @@ snapshots:
       has-flag: 4.0.0
 
   svg-tags@1.0.0: {}
+
+  swiper@11.2.0: {}
 
   sync-child-process@1.0.2:
     dependencies:

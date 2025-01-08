@@ -42,6 +42,6 @@ onBeforeUnmount(() => {
 .content {
   flex: 1;
   overflow-y: auto;
-  background-color: #000;
+  background-color: #fff;
 }
 </style>

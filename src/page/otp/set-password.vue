@@ -1,7 +1,7 @@
 <template>
   <div class="relative-container">
     <div class="absolute-child"></div>
-    <img :src="authBackground" class="background-image" style="height: 100%; margin-top: 100px" />
+    <img :src="authBackground" class="background-image" style="height: 100%;" />
     <!-- Centered component -->
     <div class="centered-component" >
       <OtpSetNewPassword/>
@@ -11,8 +11,12 @@
 
 <script>
 import authBackground from '../../static/images/authBackground.png';
+import OtpSetNewPassword from '../../components/Otp/SetNewPassword.vue';
 
 export default {
+  components:{
+    OtpSetNewPassword
+  },
   data() {
     return {
       hasToken: false,
@@ -74,7 +78,7 @@ body {
 
 .centered-component {
   position: absolute;
-  top: 57%;
+  top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;

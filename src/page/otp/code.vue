@@ -1,7 +1,7 @@
 <template>
   <div class="relative-container">
     <div class="absolute-child"></div>
-    <img :src="authBackground" class="background-image" style="height: 100%; margin-top: 100px" />
+    <img :src="authBackground" class="background-image" style="height: 100%;" />
     <!-- Centered component -->
     <div class="centered-component" >
       <OtpCode/>
@@ -11,8 +11,12 @@
 
 <script>
 import authBackground from '../../static/images/authBackground.png';
+import OtpCode from '../../components/Otp/Code.vue';
 
 export default {
+  components:{
+    OtpCode
+  },
   data() {
     return {
       hasToken: false,
@@ -36,13 +40,6 @@ export default {
 </script>
 
 <style scoped>
-html,
-body {
-  margin: 0;
-  padding: 0;
-  overflow: hidden; /* Prevent scrollbar */
-}
-
 .relative-container {
   position: relative;
   width: 100%;
@@ -74,7 +71,7 @@ body {
 
 .centered-component {
   position: absolute;
-  top: 57%;
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;

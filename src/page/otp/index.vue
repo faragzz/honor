@@ -13,6 +13,9 @@
 import authBackground from '../../static/images/authBackground.png';
 import OtpForgetPassword from '../../components/otp/ForgetPassword.vue';
 export default {
+  components: {
+    OtpForgetPassword
+  },
   data() {
     return {
       hasToken: false,
@@ -20,7 +23,6 @@ export default {
       otp: false,
       isAuth: true,
       authBackground,
-      OtpForgetPassword
     };
   },
   methods: {
@@ -45,6 +47,7 @@ export default {
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  font-family: 'Calson', 'sans-serif';
 }
 
 .absolute-child {
@@ -68,7 +71,7 @@ export default {
 
 .centered-component {
   position: absolute;
-  top: 57%;
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;

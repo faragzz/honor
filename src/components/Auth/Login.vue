@@ -153,7 +153,7 @@ export default {
   }
 
   button {
-    width: 100%;
+    width: 104%;
     padding: 10px;
     background-color: #0D0D0D;
     border: none;

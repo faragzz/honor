@@ -68,9 +68,9 @@ export default {
 
 <style scoped lang="scss">
 .forgot-password-form {
-  margin: 0 auto;
   border-radius: 5px;
-  background-color: #000;
+  background-color: white;
+  padding-bottom: 96px;
 
   .form-container {
     margin: 96px 40px;
@@ -85,13 +85,13 @@ export default {
 
     .title {
       font-size: 18px;
-      color: #E6E6E6;
+      color: var(--dark-text-color);
       margin-bottom: 16px;
     }
 
     .subtitle {
       font-size: 12px;
-      color: #E6E6E6;
+      color: var(--dark-text-color);
     }
   }
 
@@ -100,7 +100,7 @@ export default {
 
     label {
       font-size: 13px;
-      color: #E6E6E6;
+      color: var(--dark-text-color);
       display: block;
       margin-bottom: 16px;
       text-align:start;
@@ -110,8 +110,8 @@ export default {
       width: 100%;
       height: 48px;
       padding: 8px;
-      color: #fff;
-      background-color: #000;
+      color: var(--dark-text-color);
+      background-color: white;
       border: 1px solid #454343;
       border-radius: 4px;
       font-size: 16px;
@@ -121,29 +121,25 @@ export default {
   .reset-btn {
     width: 100%;
     padding: 10px;
-    background-color: #fff;
-    color: #000;
+    background-color: var(--dark-text-color);;
+    color: white;
     border: none;
     border-radius: 4px;
     font-size: 12px;
     height: 48px;
     cursor: pointer;
     margin-bottom: 32px;
-
-    &:hover {
-      background-color: #f1f1f1;
-    }
   }
 
   .back-to-login {
     font-size: 13px;
-    color: #E6E6E6;
+    color: var(--dark-text-color);;
 
     .login-link {
       text-decoration: underline;
       margin-left: 4px;
       cursor: pointer;
-      color: white;
+      color: var(--dark-text-color);;
     }
   }
   input::placeholder {

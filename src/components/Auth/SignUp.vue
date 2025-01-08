@@ -72,7 +72,7 @@
         </div>
 
         <!-- Submit Button -->
-        <button type="submit" style="font-size: 12px; height: 48px; margin-top: 2px">
+        <button type="submit" >
           SIGN UP
         </button>
       </form>
@@ -184,9 +184,11 @@ export default {
   margin-top: 30px;
   border-radius: 5px;
   background-color: white;
-  padding: 20px;
+  padding-bottom: 84px;
   font-family: 'Calson', 'sans-serif';
   font-size: 13px;
+  display: flex;
+  justify-content: center;
   .txtColor {
     color: black;
   }
@@ -234,13 +236,15 @@ export default {
   }
 
   button {
-    width: 100%;
+    width: 104%;
+    height: 48px;
     padding: 10px;
+    margin-top: 2px;
     background-color: #0D0D0D;
     border: none;
     border-radius: 4px;
     color: white;
-    font-size: 17px;
+    font-size: 12px;
     cursor: pointer;
     font-family: 'Calson', 'sans-serif';
   }
