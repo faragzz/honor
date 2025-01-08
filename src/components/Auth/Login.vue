@@ -1,7 +1,7 @@
 <template>
   <div class="login-form" :style="formStyle">
-    <div style="margin-bottom: 96px; margin-left: 40px; margin-right: 40px;">
-      <p style="display: flex; justify-content: center; font-size: 18px; margin-bottom: 48px">Login</p>
+    <div style=" margin-left: 40px; margin-right: 40px;">
+      <p style="display: flex; justify-content: center; font-size: 18px; margin-bottom: 48px;padding-top: 70px">MY ACCOUNT</p>
       <form @submit.prevent="handleSubmit">
         <div class="form-group">
           <label class="txtColor" for="email" style="font-size: 14px; line-height: 16px">Email Address</label>
@@ -29,8 +29,8 @@
             </span>
           </div>
         </div>
-        <p style="display: flex; justify-content: end; align-content: center; font-size: 14px; margin-bottom: 21px; margin-top:23px; cursor: pointer;  color: #CCC" @click="gotoOtp">Forget your Password!</p>
-        <button type="submit" style="font-size: 12px; height: 48px">LOGIN</button>
+        <p style="display: flex; justify-content: end; align-content: center; font-size: 12px; margin-bottom: 21px; margin-top:23px; cursor: pointer;  color: #0D0D0D" @click="gotoOtp">Forget your Password!</p>
+        <button type="submit" style="font-size: 12px; font-family:'Calson', 'sans-serif'; height: 48px">LOGIN</button>
       </form>
       <div v-if="errorMessage" class="error">{{ errorMessage }}</div>
       <p class="txtColor" style="display: flex; justify-content: center; padding-top: 32px; font-size: 13px">Don't have an account?
@@ -54,15 +54,14 @@ export default {
       showPassword: false,
       eyeOpen,
       eyeClose,
-      isMobile: false, // Variable to track screen size
+      isMobile: false,
     };
   },
   computed: {
-    // Dynamically bind styles based on the screen size
     formStyle() {
       return {
-        width: this.isMobile ? '450px' : '614px', // Set width based on isMobile
-        height: this.isMobile ? 'auto' : '634px', // Adjust height if needed
+        width: this.isMobile ? '450px' : '614px',
+        height: this.isMobile ? 'auto' : '634px',
       };
     }
   },
@@ -84,24 +83,21 @@ export default {
       console.log('Logging in with:', { email: this.email, password: this.password });
     },
     switchToSignUp() {
-      this.$emit('switch-to'); // Emit an event to switch to sign-up
+      this.$emit('switch-to');
     },
     gotoOtp(){
       this.$router.push('/otp');
     },
     updateScreenSize() {
-      this.isMobile = window.innerWidth <= 768; // Update the mobile flag
+      this.isMobile = window.innerWidth <= 768;
     }
   },
   mounted() {
-    // Initialize the screen size on component mount
     this.updateScreenSize();
 
-    // Add event listener to watch screen size changes
     window.addEventListener('resize', this.updateScreenSize);
   },
   beforeDestroy() {
-    // Remove the event listener when the component is destroyed
     window.removeEventListener('resize', this.updateScreenSize);
   }
 };
@@ -109,17 +105,20 @@ export default {
 
 <style scoped lang="scss">
 .login-form {
-  margin-top: 30px;
+  margin-top: 40px;
   border-radius: 5px;
-  background-color: #000;
+  background-color: #ffffff;
+  font-family: 'Calson', 'sans-serif';
+  font-size: 12px;
   h2 {
     text-align: center;
   }
   .txtColor {
-    color: #E6E6E6;
+    color: #0D0D0D;
   }
 
   .form-group {
+
     label {
       display: block;
       margin-bottom: 16px;
@@ -129,7 +128,7 @@ export default {
       width: 100%;
       padding: 8px;
       color: white;
-      background-color: black;
+      background-color: #ffffff;
       border: 1px solid #454343;
       border-radius: 4px;
       font-size: 16px;
@@ -156,10 +155,10 @@ export default {
   button {
     width: 100%;
     padding: 10px;
-    background-color: white;
+    background-color: #0D0D0D;
     border: none;
     border-radius: 4px;
-    color: black;
+    color: white;
     font-size: 17px;
     cursor: pointer;
   }

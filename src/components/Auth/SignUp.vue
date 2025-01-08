@@ -1,14 +1,14 @@
 <template>
   <div class="signup-form" :style="formStyle">
-    <div style="margin-top: 51px; margin-bottom: 51px; margin-left: 40px; margin-right: 40px">
-      <p style="display: flex; justify-content: center; font-size: 18px; margin-bottom: 48px;color:white">
-        Sign Up
+    <div style="margin: 51px 40px;">
+      <p style="display: flex; justify-content: center; font-size: 18px; margin-bottom: 48px;color:#0D0D0D">
+        RESGISTER
       </p>
       <form @submit.prevent="handleSubmit">
         <!-- Email Input -->
         <div class="form-group">
           <label class="txtColor" for="email">Email Address</label>
-          <input type="email" id="email" v-model="email" required placeholder="Enter your email" />
+          <input type="email" id="email" v-model="email" required placeholder="*****@gmail.com" />
         </div>
 
         <!-- Password Input -->
@@ -31,6 +31,7 @@
               />
             </span>
           </div>
+          <label v-show="showPasswordError" style="transform: translateY(-15px)">Your password must be 8 characters or more and contain both an uppercase letter and a number</label>
         </div>
 
         <!-- Name Inputs -->
@@ -63,8 +64,8 @@
 
         <!-- Date of Birth -->
         <div class="form-group">
-          <label class="txtColor" for="dob">Date of Birth (optional)</label>
-          <input type="date" id="dob" v-model="dob" required />
+          <label class="txtColor" for="date">Date of Birth (optional)</label>
+          <input type="date" id="date" v-model="date" required />
           <p class="txtColor" style="margin-top: -16px">
             By registering, your account will be subject to Terms & Conditions and Privacy policy
           </p>
@@ -76,8 +77,6 @@
         </button>
       </form>
 
-      <!-- Error Message -->
-      <div v-if="errorMessage" class="error">{{ errorMessage }}</div>
 
       <!-- Toggle to Login -->
       <p
@@ -110,17 +109,16 @@ export default {
   name: 'Signup',
   data() {
     return {
-      title: '',
       firstName: '',
       lastName: '',
       email: '',
       password: '',
-      dob: '',
-      errorMessage: '',
+      date: '',
       showPassword: false,
       eyeOpen,
       eyeClose,
       isMobile: false, // Variable to track screen size
+      showPasswordError: false,
     }
   },
   computed: {
@@ -138,13 +136,17 @@ export default {
     },
     handleSubmit() {
       // Reset error message
-      this.errorMessage = ''
 
       // Basic validation
-      if (!this.firstName || !this.lastName || !this.email || !this.password || !this.dob) {
-        this.errorMessage = 'Please fill in all fields'
+      if (!this.firstName || !this.lastName || !this.email || !this.password || !this.date) {
         return
       }
+      const passwordRegex = /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/;
+      if (!passwordRegex.test(this.password)) {
+        this.showPasswordError=true;
+        return;
+      }
+      else this.showPasswordError=false;
 
       // Simulate a signup process
       console.log('Signing up with:', {
@@ -153,7 +155,7 @@ export default {
         lastName: this.lastName,
         email: this.email,
         password: this.password,
-        dob: this.dob,
+        date: this.date,
       })
     },
     switchToLogin() {
@@ -181,10 +183,12 @@ export default {
 .signup-form {
   margin-top: 30px;
   border-radius: 5px;
-  background-color: #000;
+  background-color: white;
   padding: 20px;
+  font-family: 'Calson', 'sans-serif';
+  font-size: 13px;
   .txtColor {
-    color: #e6e6e6;
+    color: black;
   }
 
   .form-group {
@@ -200,8 +204,8 @@ export default {
       margin-bottom: 32px;
       width: 100%;
       padding: 8px;
-      color: white;
-      background-color: black;
+      color: #0D0D0D;
+      background-color: white;
       border: 1px solid #454343;
       border-radius: 4px;
       font-size: 16px;
@@ -210,8 +214,8 @@ export default {
     select {
       width: 100%;
       padding: 8px;
-      color: white;
-      background-color: black;
+      color: #0D0D0D;
+      background-color: white;
       border: 1px solid #454343;
       border-radius: 4px;
       font-size: 16px;
@@ -232,12 +236,13 @@ export default {
   button {
     width: 100%;
     padding: 10px;
-    background-color: white;
+    background-color: #0D0D0D;
     border: none;
     border-radius: 4px;
-    color: black;
+    color: white;
     font-size: 17px;
     cursor: pointer;
+    font-family: 'Calson', 'sans-serif';
   }
 
   .error {

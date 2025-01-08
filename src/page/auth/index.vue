@@ -41,7 +41,7 @@ export default {
 .relative-container {
   position: relative;
   width: 100%;
-  height: 100%;
+  height: 165%;
 }
 
 .absolute-child {
@@ -75,11 +75,5 @@ export default {
   height: auto;
   box-sizing: border-box;
   overflow-x: auto;
-}
-
-.centered-component {
-  width: 100%;
-  max-width: 450px;
-  margin: auto;
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div class="relative-container">
     <div class="absolute-child"></div>
-    <img :src="authBackground" class="background-image" style="height: 100%; margin-top: 100px" />
+    <img :src="authBackground" class="background-image" style="height: 100%;"/>
     <!-- Centered component -->
     <div class="centered-component" >
       <OtpForgetPassword/>
@@ -11,7 +11,7 @@
 
 <script>
 import authBackground from '../../static/images/authBackground.png';
-
+import OtpForgetPassword from '../../components/otp/ForgetPassword.vue';
 export default {
   data() {
     return {
@@ -20,6 +20,7 @@ export default {
       otp: false,
       isAuth: true,
       authBackground,
+      OtpForgetPassword
     };
   },
   methods: {
@@ -36,21 +37,14 @@ export default {
 </script>
 
 <style scoped>
-html,
-body {
-  margin: 0;
-  padding: 0;
-  overflow: hidden; /* Prevent scrollbar */
-}
-
 .relative-container {
   position: relative;
   width: 100%;
-  height: 100vh; /* Full viewport height */
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden; /* Ensure no overflow */
+  overflow: hidden;
 }
 
 .absolute-child {
@@ -66,7 +60,7 @@ body {
 .background-image {
   height: 100vh;
   width: 100%;
-  object-fit: cover; /* Ensures image covers the full area */
+  object-fit: cover;
   position: absolute;
   top: 0;
   left: 0;

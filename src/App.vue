@@ -25,8 +25,9 @@ onBeforeUnmount(() => {
     <Header :is-mobile="isMobile" />
     <div class="content">
       <router-view />
+      <Footer :is-mobile="isMobile" />
     </div>
-    <Footer :is-mobile="isMobile" />
+
   </div>
 </template>
 
