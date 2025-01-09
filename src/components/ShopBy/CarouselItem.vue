@@ -1,5 +1,5 @@
 <template>
-  <nuxt-link :to="`/category/${product.parent_name.replace(/ /g, '-')}`" class="product-image-link">
+  <router-link :to="`/category/${product.parent_name.replace(/ /g, '-')}`" class="product-image-link">
     <div class="product-image-container">
       <div class="image-wrapper">
         <img
@@ -13,7 +13,7 @@
         <p class="showMore">Shop More</p>
       </div>
     </div>
-  </nuxt-link>
+  </router-link >
 </template>
 
 <script lang="ts">
