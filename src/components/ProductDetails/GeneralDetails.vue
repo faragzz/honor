@@ -26,8 +26,7 @@ export default {
         borderRadius: '50%',
         marginLeft: '8px',
         marginRight: '8px',
-        marginTop: '8px',
-        border: '1px solid #333',
+        border: '1px solid #E6E6E6',
       }"
       />
       <p class="color name">{{data.colorName}}</p>
@@ -44,7 +43,9 @@ export default {
   text-align: left;
   width: 100%;
   margin-bottom: 24px;
+  font-family: 'Calson', 'sans-serif';
   box-sizing: border-box;
+  font-size: 12px;
 }
 
 .title {
@@ -96,7 +97,7 @@ export default {
   &.name {
     font-size: 14px;
     text-align: left;
-    margin-top: 14px;
+    margin-top: 18px;
   }
 }
 </style>

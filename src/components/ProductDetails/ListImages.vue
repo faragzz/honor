@@ -13,7 +13,7 @@
       :src="item"
       alt="image"
       @click="selectImg(index)"
-      :style="imgIndex === index ? { border: '2px solid #FFF' } : {}"
+      :style="imgIndex === index ? { border: '2px solid #000' } : {}"
     />
   </div>
 </template>

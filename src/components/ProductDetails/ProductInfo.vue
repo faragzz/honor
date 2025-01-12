@@ -13,7 +13,7 @@
         />
       </div>
     </button>
-    <div style="width: 603px; border-top: 1px solid #333; margin-bottom: 16px"/>
+    <div style="width: 603px; border-top: 1px solid #E6E6E6; margin-bottom: 16px"/>
     <ul v-if="isOpen" class="dropdown-menu">
       <li v-for="(info, index) in infos" :key="index" class="dropdown-item">
           <div v-if="showBullets" class="bullet-container"></div>
@@ -71,16 +71,16 @@ export default {
 
 .dropdown {
   position: relative;
-  display: inline-block;
   width: 608px;
+  font-family: 'Calson', 'sans-serif';
 }
 
 .dropdown-toggle {
   padding: 8px;
   width: 608px;
   height: 56px;
-  background-color: var(--c-black);
-  color: white;
+  background-color: white;
+  color: var(--dark-text-color);
   cursor: pointer;
   font-size: 13px;
   font-weight: 400;
@@ -103,13 +103,11 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  background-color: var(--c-black);
-  color: white;
+  color: var(--dark-text-color);
   list-style: none;
   padding: 8px;
   width: 100%;
   height: auto;
-  border-radius: 4px;
   z-index: 20;
 }
 
@@ -121,11 +119,10 @@ export default {
 }
 
 .bullet-container {
-  background-color: white;
+  background-color: var(--dark-text-color);
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  border: 1px solid #333;
   margin-right: 8px;
   margin-bottom: 6px;
 }

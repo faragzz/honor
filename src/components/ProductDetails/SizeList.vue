@@ -25,7 +25,7 @@ export default {
       <div
         class="grid-item"
         @click="selectSize(index)"
-        :style="selected === index ? { border: '1px solid #FFF' } : { border: '1px solid #333' }"
+        :style="selected === index ? { border: '1px solid #0B0B0B' } : { border: '1px solid #E6E6E6' }"
         v-for="(item, index) in list"
         :key="index"
       >
@@ -57,6 +57,6 @@ export default {
   border-radius: 2px;
 }
 .grid-item .title {
-  margin-top: 10px;
+  margin-top: 18px;
 }
 </style>

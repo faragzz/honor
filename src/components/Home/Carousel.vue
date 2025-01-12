@@ -1,27 +1,46 @@
 <template>
-  <div style="position: relative">
-    <p class="title">SHOP OUR CATEGORIES</p>
+  <div style="position: relative; overflow: hidden">
     <div class="carousel-container">
+      <p
+        style="
+          font-family: 'zuume', 'sans-serif';
+          font-size: 30px;
+          position: absolute;
+          bottom: 100px;
+          left: 20px;
+          z-index: 20;
+          color: white;
+        "
+      >
+        View Shop
+      </p>
       <!-- Carousel Container -->
       <div class="carousel-wrapper">
         <div class="carousel" :style="carouselStyle">
           <!-- Loop carousel items -->
           <div class="slide" v-for="(data, index) in page" :key="index">
-            <CarouselItem :product="data" />
+            <div class="carousel-item">
+              <CarouselItem :key="index" :title="data.title" :image="data.image" />
+            </div>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="carousel-controls">
-      <button @click="prevSlide"><img :src="arrow" width="24px" height="24px" style="transform: scaleX(-1);"></button>
-      <button @click="nextSlide"><img :src="arrow" width="24px" height="24px"></button>
+    <div style="position: absolute; top: 50%; width: 100%; pointer-events: none;">
+      <button v-if="showLeft" class="btn left" @click="prevSlide" style="pointer-events: all; ">
+        <img :src="arrowC" width="19.2px" height="19.2px" style="transform: scaleX(-1);" />
+      </button>
+      <button class="btn right" @click="nextSlide" style="pointer-events: all;">
+        <img :src="arrowC" width="19.2px" height="19.2px" />
+      </button>
     </div>
   </div>
 </template>
 
 <script>
 import arrow from '../../static/images/shopBy/arrow.svg';
+import arrowC from '../../static/images/productDetails/arrowC.svg';
 import CarouselItem from './CarouselItem.vue';
 
 export default {
@@ -30,66 +49,71 @@ export default {
     CarouselItem,
   },
   data() {
+    // make sure pages is set and total items is set
     return {
       currentSlide: 0,
       page: [
         {
           id: 1,
-          parent_name: "Electronics",
+          title: "Electronics",
           image: "https://via.placeholder.com/324x485?text=Electronics",
         },
         {
           id: 2,
-          parent_name: "Fashion",
+          title: "Fashion",
           image: "https://via.placeholder.com/324x485?text=Fashion",
         },
         {
           id: 3,
-          parent_name: "Home Decor",
+          title: "Home Decor",
           image: "https://via.placeholder.com/324x485?text=Home+Decor",
         },
         {
           id: 4,
-          parent_name: "Toys",
+          title: "Toys",
           image: "https://via.placeholder.com/324x485?text=Toys",
         },
         {
           id: 5,
-          parent_name: "Books",
+          title: "Books",
           image: "https://via.placeholder.com/324x485?text=Books",
         },
         {
           id: 6,
-          parent_name: "Electronics",
+          title: "Electronics",
           image: "https://via.placeholder.com/324x485?text=Electronics",
         },
         {
           id: 7,
-          parent_name: "Fashion",
+          title: "Fashion",
           image: "https://via.placeholder.com/324x485?text=Fashion",
         },
         {
           id: 8,
-          parent_name: "Home Decor",
+          title: "Home Decor",
           image: "https://via.placeholder.com/324x485?text=Home+Decor",
         },
         {
           id: 9,
-          parent_name: "Toys",
+          title: "Toys",
           image: "https://via.placeholder.com/324x485?text=Toys",
         },
         {
           id: 10,
-          parent_name: "Books",
+          title: "Books",
           image: "https://via.placeholder.com/324x485?text=Books",
         },
       ],
-      itemWidth: 332,
+      itemWidth: 443,
       totalItems: 10,
-      arrow
+      arrow,
+      arrowC
     };
   },
   computed: {
+    showLeft() {
+      return this.currentSlide > 0; // Show left button only if not on the first slide
+    },
     carouselStyle() {
       return {
         transform: `translateX(-${this.currentSlide * this.itemWidth}px)`,
@@ -111,6 +135,7 @@ export default {
     },
     nextSlide() {
       this.currentSlide = (this.currentSlide + 1) % this.totalItems;
+
     },
     prevSlide() {
       this.currentSlide = (this.currentSlide - 1 + this.totalItems) % this.totalItems;
@@ -122,49 +147,58 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped >
+.btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 24px;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 10;
+  background: var(--dark-text-color);
+  outline: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn.right {
+  right: 10px;
+}
+
+.btn.left {
+  left: 10px;
+}
+
 .carousel-container {
   margin-top: 32px;
   position: relative;
   max-width: 100%;
   height: 639px;
-  overflow: hidden;
 }
 
 .carousel-wrapper {
   display: flex;
   width: 100%;
-  overflow: hidden;
+  overflow-y: visible;
+
 }
 
 .carousel {
   display: flex;
   transition: transform 0.3s ease;
 }
-.title{
-  font-size: 18px;
-  font-family: Caslon,serif;
-  margin-bottom: 32px;
-  font-weight: 400;
-  margin-top: 88px;
-}
+
 .slide {
   flex: 0 0 auto;
-  width: 300px;
+  width: 435px;
   text-align: center;
-  margin-right: 32px;
-}
-
-.carousel-controls {
-  position: absolute;
-  bottom:50px;
-  right: 140px;
-  display: flex;
-  gap: 16px;
-
-  @media (max-width: 768px) {
-    right:20px;
-  }
+  margin-right:8px;
 }
 
 button {

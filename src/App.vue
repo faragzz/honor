@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import Header from '@/components/header/Header.vue'
 import Footer from '@/components/footer/footer.vue'
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { ref, onMounted, onBeforeUnmount, computed } from 'vue'
+import { useRoute } from 'vue-router'
 
 const isMobile = ref(false)
 
@@ -10,12 +11,19 @@ const checkIfMobile = () => {
 }
 
 onMounted(() => {
-  checkIfMobile ()
+  checkIfMobile()
   window.addEventListener('resize', checkIfMobile)
 })
 
 onBeforeUnmount(() => {
   window.removeEventListener('resize', checkIfMobile)
+})
+
+// Get the current route
+const route = useRoute()
+
+const contentBackgroundColor = computed(() => {
+  return route.path === '/' ? '#0D0D0D' : '#fff'
 })
 </script>
 
@@ -23,11 +31,13 @@ onBeforeUnmount(() => {
   <div class="layout">
     <!-- header -->
     <Header :is-mobile="isMobile" />
-    <div class="content">
+    <div
+      class="content"
+      :style="{ backgroundColor: contentBackgroundColor }"
+    >
       <router-view />
       <Footer :is-mobile="isMobile" />
     </div>
-
   </div>
 </template>
 
@@ -38,10 +48,8 @@ onBeforeUnmount(() => {
   height: 100%;
 }
 
-/* Content area allows scrolling if content is large */
 .content {
   flex: 1;
   overflow-y: auto;
-  background-color: #fff;
 }
 </style>
