@@ -46,10 +46,10 @@ defineProps({
         margin-right: 120px;
       "
     >
-      <img :src="Search" alt="Search" width="24px" height="24px" />
-      <img :src="User" alt="User" width="24px" height="24px" />
-      <img :src="Heart" alt="Heart" width="24px" height="24px" />
-      <img :src="Cart" alt="Cart" width="24px" height="24px" />
+      <RouterLink to="/"><img :src="Search" alt="Search" width="24px" height="24px" /></RouterLink>
+      <RouterLink to="/login"><img :src="User" alt="User" width="24px" height="24px" /></RouterLink>
+      <RouterLink to="/wishlist"><img :src="Heart" alt="Heart" width="24px" height="24px" /></RouterLink>
+      <RouterLink to="/cart"><img :src="Cart" alt="Cart" width="24px" height="24px" /></RouterLink>
     </div>
 
     <!-- Text Section -->
@@ -72,7 +72,13 @@ defineProps({
         <RouterLink class="header__nav__link" to="/by-appointment">BY APPOINTMENT</RouterLink>
       </div>
       <router-link class="header__nav__link" to="/">
-        <img :src="Logo" alt="Logo" width="114px" height="52px" style="transform: translateY(-15px)" />
+        <img
+          :src="Logo"
+          alt="Logo"
+          width="114px"
+          height="52px"
+          style="transform: translateY(-15px)"
+        />
       </router-link>
       <div style="display: flex; flex-direction: row; gap: 32px; position: absolute; right: 0">
         <RouterLink class="header__nav__link" to="/about-us">ABOUT US</RouterLink>
@@ -114,16 +120,16 @@ defineProps({
       "
     >
       <div style="display: flex; flex-direction: column; gap: 48px; margin-left: 24px">
-        <div style="display: flex; flex-direction: column; gap:18px">
+        <div style="display: flex; flex-direction: column; gap: 18px">
           <RouterLink class="header__nav__link" to="/shop">SHOP</RouterLink>
           <RouterLink class="header__nav__link" to="/Bridal">BRIDAL</RouterLink>
           <RouterLink class="header__nav__link" to="/Bespoke">BESPOKE</RouterLink>
         </div>
-        <div style="display: flex; flex-direction: column; gap:18px">
+        <div style="display: flex; flex-direction: column; gap: 18px">
           <RouterLink class="header__nav__link" to="/account">ACCOUNT</RouterLink>
           <RouterLink class="header__nav__link" to="/by-appointment">BY APPOINTMENT</RouterLink>
         </div>
-        <div style="display: flex; flex-direction: column; gap:18px">
+        <div style="display: flex; flex-direction: column; gap: 18px">
           <RouterLink class="header__nav__link" to="/about-us">ABOUT US</RouterLink>
           <RouterLink class="header__nav__link" to="/our-world">OUR WORLD</RouterLink>
           <RouterLink class="header__nav__link" to="/films">FILMS</RouterLink>

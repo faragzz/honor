@@ -1,5 +1,4 @@
 <script setup>
-import { ref, onMounted } from 'vue'
 import homeImage from '../static/images/home.svg'
 import categoryImages from '../static/images/footerShopby.png'
 import arrowDown from '../static/images/arrow-down.svg'

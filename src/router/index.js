@@ -7,7 +7,7 @@ import Shop from '../page/shop/index.vue'
 import Home from '../page/index.vue'
 import Category from '../page/category/index.vue'
 import ProductDetails from '@/page/product-details/index.vue'
-
+import Cart from '@/page/cart/index.vue'
 const routes = [
   { path: '/', name: 'home', component: Home },
   { path: '/login', name: 'Auth', component: Auth },
@@ -17,6 +17,7 @@ const routes = [
   { path: '/shop', name: 'shop', component: Shop },
   { path: '/category/:id', name: 'category', component: Category },
   { path: '/product-details/:id', name: 'product-details', component: ProductDetails },
+  { path: '/cart', name: 'cart', component: Cart },
 
 ]
 

@@ -29,7 +29,7 @@ export default {
       <img :src="data.img" width="103px" height="136px" />
       <div style="margin-left: 16px">
         <p class="title">{{ data.title }}</p>
-        <p class="txt">{{ data.description }}}</p>
+        <p class="txt">{{ data.description }}</p>
         <div class="color-section">
           <p class="color title">Color:</p>
           <div
@@ -41,7 +41,7 @@ export default {
               marginLeft: '8px',
               marginRight: '8px',
               marginBottom: '4px',
-              border: '1px solid #333',
+              border: '1px solid grey',
             }"
           />
           <p class="color name">{{ data.colorName }}</p>
@@ -55,11 +55,11 @@ export default {
     </div>
     <div style="display: flex; gap: 16px; margin-top: 21px">
       <div style="display: flex;gap: 8px">
-        <img class="icon" :src="bin" width="16px" height="16px" />
+        <img class="icon" :src="bin" width="16px" height="16px" style="margin-top: 12px" />
         <p class="txt">Remove from cart</p>
       </div>
       <div style="display: flex; gap: 8px">
-        <img class="icon" :src="fav" width="16px" height="16px" />
+        <img class="icon" :src="fav" width="16px" height="16px" style="margin-top: 12px"/>
         <p class="txt">Add to wishlist</p>
       </div>
     </div>
