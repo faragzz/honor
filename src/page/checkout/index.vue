@@ -30,10 +30,6 @@ const generalProductData = {
   size: 'UK2',
   colorName: 'Cream',
 }
-
-function personalProductsData() {
-  console.log("bogg",userInfo.value)
-}
 </script>
 
 <template>

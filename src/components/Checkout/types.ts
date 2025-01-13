@@ -4,4 +4,13 @@ type UserInfo = {
   email: string
   phoneNumber: string
 }
-export {UserInfo};
+type ShippingAddressFormData = {
+  country: string;
+  city: string;
+  region: string;
+  streetNumber: string;
+  houseNumber: string;
+  postalCode: string;
+};
+
+export {UserInfo,ShippingAddressFormData};
