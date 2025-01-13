@@ -13,18 +13,18 @@
         />
       </div>
     </button>
-    <div style="width: 603px; border-top: 1px solid #E6E6E6; margin-bottom: 16px"/>
+    <div style="width: 603px; border-top: 1px solid #e6e6e6; margin-bottom: 16px" />
     <ul v-if="isOpen" class="dropdown-menu">
       <li v-for="(info, index) in infos" :key="index" class="dropdown-item">
-          <div v-if="showBullets" class="bullet-container"></div>
-          <span>{{ info }}</span>
+        <div v-if="showBullets" class="bullet-container"></div>
+        <span>{{ info }}</span>
       </li>
     </ul>
   </div>
 </template>
 
 <script lang="js">
-import arrow from '../../static/images/category/arrow.svg';
+import arrow from '../../static/images/category/arrow.svg'
 
 export default {
   props: {
@@ -51,16 +51,15 @@ export default {
     return {
       isOpen: this.opened,
       arrow,
-    };
+    }
   },
   methods: {
     toggleDropdown() {
-      this.isOpen = !this.isOpen;
+      this.isOpen = !this.isOpen
     },
   },
-};
+}
 </script>
-
 
 <style scoped>
 .title {

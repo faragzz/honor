@@ -28,7 +28,7 @@ export default {
 .cart{
   display: flex;
   justify-content: space-between;
-  width: 435px;
+  width: 100%;
   height: 20px;
 }
 </style>

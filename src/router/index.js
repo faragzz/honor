@@ -8,6 +8,8 @@ import Home from '../page/index.vue'
 import Category from '../page/category/index.vue'
 import ProductDetails from '@/page/product-details/index.vue'
 import Cart from '@/page/cart/index.vue'
+import Checkout from '@/page/checkout/index.vue'
+
 const routes = [
   { path: '/', name: 'home', component: Home },
   { path: '/login', name: 'Auth', component: Auth },
@@ -18,7 +20,7 @@ const routes = [
   { path: '/category/:id', name: 'category', component: Category },
   { path: '/product-details/:id', name: 'product-details', component: ProductDetails },
   { path: '/cart', name: 'cart', component: Cart },
-
+  { path: '/checkout', name: 'checkout', component: Checkout },
 ]
 
 const router = createRouter({

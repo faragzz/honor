@@ -3,8 +3,8 @@
     <div v-show="!isMobile" class="productDetailSection">
       <div class="productDetailOne">
         <div class="imgsContainer">
-          <ProductDetailsListImages :imgIndex="imgIndex" :list="imgList" :selectImg="selectImg"/>
-          <ProductDetailsImgCarousel :img="imgList[imgIndex]" :next="nextImg" :prev="prevImg"/>
+          <ProductDetailsListImages :imgIndex="imgIndex" :list="imgList" :selectImg="selectImg" />
+          <ProductDetailsImgCarousel :img="imgList[imgIndex]" :next="nextImg" :prev="prevImg" />
         </div>
       </div>
       <!-- Product details -->
@@ -14,34 +14,77 @@
           <ProductDetailsSizeList :selected="selected" :select-size="selectSize" :list="sizeList" />
         </div>
         <div class="btns-section">
-          <button class="btns add-to-cart">ADD TO CART</button>
+          <button class="btns add-to-cart" onclick="addToCart">ADD TO CART</button>
           <button class="btns add-to-wishlist">ADD TO WISHLIST</button>
         </div>
         <div class="faq">
           <ProductDetailsProductInfo :title="'Details & Care'" :infos="detailsAndCare" />
           <ProductDetailsProductInfo :title="'Size & Fit'" :infos="sizeAndFit" />
-          <ProductDetailsProductInfo :title="'Delivery & Return'" :show-bullets="false" :infos="deliveryAndReturn" />
+          <ProductDetailsProductInfo
+            :title="'Delivery & Return'"
+            :show-bullets="false"
+            :infos="deliveryAndReturn"
+          />
         </div>
       </div>
     </div>
-    <div v-show="isMobile" style="display: flex; flex-direction: column; justify-content: center; align-items: center; width: 100%; height: 100%; overflow: hidden;">
-      <div style="display: flex; flex-direction: column; transform: scale(0.55); transform-origin: center center; justify-content: center; align-items: center;">
-        <ProductDetailsImgCarousel :img="imgList[imgIndex]" :next="nextImg" :prev="prevImg"/>
-        <ProductDetailsListImages :imgIndex="imgIndex" :list="imgList" :selectImg="selectImg" :is-mobile="isMobile" />
+    <div
+      v-show="isMobile"
+      style="
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      "
+    >
+      <div
+        style="
+          display: flex;
+          flex-direction: column;
+          transform: scale(0.55);
+          transform-origin: center center;
+          justify-content: center;
+          align-items: center;
+        "
+      >
+        <ProductDetailsImgCarousel :img="imgList[imgIndex]" :next="nextImg" :prev="prevImg" />
+        <ProductDetailsListImages
+          :imgIndex="imgIndex"
+          :list="imgList"
+          :selectImg="selectImg"
+          :is-mobile="isMobile"
+        />
       </div>
-      <div style="display: flex; flex-direction: column; transform: scale(0.57); transform-origin: center center; justify-content: center; align-items: center; margin-top: -300px">
+      <div
+        style="
+          display: flex;
+          flex-direction: column;
+          transform: scale(0.57);
+          transform-origin: center center;
+          justify-content: center;
+          align-items: center;
+          margin-top: -300px;
+        "
+      >
         <ProductDetailsGeneralDetails :data="generalProductData" />
         <div class="size-category">
           <ProductDetailsSizeList :selected="selected" :select-size="selectSize" :list="sizeList" />
         </div>
         <div class="btns-section">
-          <button class="btns add-to-cart">ADD TO CART</button>
+          <button class="btns add-to-cart" onclick="addToCart">ADD TO CART</button>
           <button class="btns add-to-wishlist">ADD TO WISHLIST</button>
         </div>
         <div class="faq">
           <ProductDetailsProductInfo :title="'Details & Care'" :infos="detailsAndCare" />
           <ProductDetailsProductInfo :title="'Size & Fit'" :infos="sizeAndFit" />
-          <ProductDetailsProductInfo :title="'Delivery & Return'" :show-bullets="false" :infos="deliveryAndReturn" />
+          <ProductDetailsProductInfo
+            :title="'Delivery & Return'"
+            :show-bullets="false"
+            :infos="deliveryAndReturn"
+          />
         </div>
       </div>
     </div>
@@ -64,7 +107,7 @@
   </div>
 </template>
 
-<script lang="js">
+<script lang="ts">
 import { generateFakeCategories } from '@/mock/generateFakeCategories.ts'
 import ProductDetailsProductInfo from '../../components/ProductDetails/ProductInfo.vue'
 import ProductDetailsGeneralDetails from '../../components/ProductDetails/GeneralDetails.vue'
@@ -73,21 +116,39 @@ import ProductDetailsListImages from '../../components/ProductDetails/ListImages
 import ProductDetailsImgCarousel from '../../components/ProductDetails/ImgCarousel.vue'
 import CategoryItem from '@/components/Category/Item.vue'
 
-const detailsAndCare = ["Material is Lightweight and sheer tulle","Store the dress in a cool, dry place, away from direct sunlight to prevent discoloration.","Dry clean","Made in NYC"];
-const sizeAndFit = ["Fits true to size, take your normal size","Take the next size down if you wish to achieve a closer fit","Model is 177cm/ 5'10\" and is wearing a UK 8"];
-const deliveryAndReturn = ["Try items in the comfort of your own home. If they're not quite right, you've got 28 days to request an exchange or return and send them back to us."];
-const sizeList = ["UK2","UK4","UK5","UK6","UK7","UK8","UK9","UK10"];
+const detailsAndCare = [
+  'Material is Lightweight and sheer tulle',
+  'Store the dress in a cool, dry place, away from direct sunlight to prevent discoloration.',
+  'Dry clean',
+  'Made in NYC',
+]
+const sizeAndFit = [
+  'Fits true to size, take your normal size',
+  'Take the next size down if you wish to achieve a closer fit',
+  'Model is 177cm/ 5\'10" and is wearing a UK 8',
+]
+const deliveryAndReturn = [
+  "Try items in the comfort of your own home. If they're not quite right, you've got 28 days to request an exchange or return and send them back to us.",
+]
+const sizeList = ['UK2', 'UK4', 'UK5', 'UK6', 'UK7', 'UK8', 'UK9', 'UK10']
 
 const generalProductData = {
-  trending:true,
-  Dress1:"Dress1",
-  description:"Ruffle gown in glitter tulle over floating heart fil coupe with silk faille heart pocket cape",
-  price:390,
-  color:"#FFF",
-  colorName:"Cream"
-};
+  trending: true,
+  Dress1: 'Dress1',
+  description:
+    'Ruffle gown in glitter tulle over floating heart fil coupe with silk faille heart pocket cape',
+  price: 390,
+  color: '#FFF',
+  colorName: 'Cream',
+}
 
-const imgList = ['https://honornyc.com/wp-content/uploads/2020/05/Honor_Resort2015_Look_01.jpg','https://honornyc.com/wp-content/uploads/2020/05/Honor_Resort2015_Look_01.jpg','https://honornyc.com/wp-content/uploads/2020/05/Honor_Resort2015_Look_01.jpg','https://honornyc.com/wp-content/uploads/2020/05/Honor_Resort2015_Look_01.jpg','https://honornyc.com/wp-content/uploads/2020/05/H_PS14_WebRes_Look_16.jpg'];
+const imgList = [
+  'https://honornyc.com/wp-content/uploads/2020/05/Honor_Resort2015_Look_01.jpg',
+  'https://honornyc.com/wp-content/uploads/2020/05/Honor_Resort2015_Look_01.jpg',
+  'https://honornyc.com/wp-content/uploads/2020/05/Honor_Resort2015_Look_01.jpg',
+  'https://honornyc.com/wp-content/uploads/2020/05/Honor_Resort2015_Look_01.jpg',
+  'https://honornyc.com/wp-content/uploads/2020/05/H_PS14_WebRes_Look_16.jpg',
+]
 
 export default {
   components: {
@@ -96,7 +157,7 @@ export default {
     ProductDetailsSizeList,
     ProductDetailsImgCarousel,
     ProductDetailsListImages,
-    CategoryItem
+    CategoryItem,
   },
   data() {
     return {
@@ -109,46 +170,54 @@ export default {
       selected: 0,
       imgIndex: 0,
       imgList,
-      windowWidth: 0
-    };
+      windowWidth: 0,
+    }
   },
   computed: {
     isMobile() {
-      return this.windowWidth <= 900;
-    }
+      return this.windowWidth <= 900
+    },
   },
   mounted() {
     if (typeof window !== 'undefined') {
-      this.windowWidth = window.innerWidth;
-      window.addEventListener('resize', this.handleResize);
+      this.windowWidth = window.innerWidth
+      window.addEventListener('resize', this.handleResize)
     }
   },
   beforeDestroy() {
     if (typeof window !== 'undefined') {
-      window.removeEventListener('resize', this.handleResize);
+      window.removeEventListener('resize', this.handleResize)
     }
   },
   methods: {
     selectSize(id) {
-      this.selected = id;
+      this.selected = id
     },
     selectImg(id) {
-      this.imgIndex = id;
+      this.imgIndex = id
     },
     nextImg() {
-      this.imgIndex = (this.imgIndex + 1) % this.imgList.length;
+      this.imgIndex = (this.imgIndex + 1) % this.imgList.length
     },
     prevImg() {
-      this.imgIndex = (this.imgIndex - 1 + this.imgList.length) % this.imgList.length;
+      this.imgIndex = (this.imgIndex - 1 + this.imgList.length) % this.imgList.length
     },
     handleResize() {
       if (typeof window !== 'undefined') {
-        this.windowWidth = window.innerWidth;
+        this.windowWidth = window.innerWidth
       }
-    }
-  }
-};
-
+    },
+    addToCart() {
+      const existingCart = JSON.parse(localStorage.getItem('itemsInCart') || '[]')
+      const productToAdd = {
+        ...this.generalProductData,
+        selectedSize: this.sizeList[this.selected],
+      }
+      existingCart.push(productToAdd)
+      localStorage.setItem('itemsInCart', JSON.stringify(existingCart))
+    },
+  },
+}
 </script>
 
 <style scoped lang="scss">
@@ -182,6 +251,7 @@ export default {
   margin-top: 88px;
   width: 100%;
 }
+
 @media (max-width: 768px) {
   .container {
     margin-top: -40px;
@@ -238,7 +308,7 @@ export default {
   flex-direction: column;
   align-items: flex-start;
   width: 608px;
-  transform:translateY(-15px);
+  transform: translateY(-15px);
 }
 
 .btns {
@@ -248,6 +318,7 @@ export default {
   color: white;
   font-size: 12px;
   font-family: 'Calson', 'sans-serif';
+
   &.add-to-cart {
     background-color: var(--dark-text-color);
     color: white;
@@ -256,7 +327,7 @@ export default {
   &.add-to-wishlist {
     background-color: white;
     border: 1px solid var(--dark-text-color);
-    color:var(--dark-text-color);
+    color: var(--dark-text-color);
   }
 }
 

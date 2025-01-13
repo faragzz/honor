@@ -4,32 +4,32 @@ export default {
   props: {
     data: {
       type: Object,
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 }
 </script>
 
 <template>
   <div class="container">
-    <p style="margin-right: auto;">{{ data.trending ? 'TRENDING NOW' : '' }}</p>
-    <p class="title">{{ data.Dress1}}</p>
-    <p class="description">{{data.description}}</p>
-    <p class="price">$ {{data.price}}</p>
+    <p style="margin-right: auto">{{ data.trending ? 'TRENDING NOW' : '' }}</p>
+    <p class="title">{{ data.Dress1 }}</p>
+    <p class="description">{{ data.description }}</p>
+    <p class="price">$ {{ data.price }}</p>
     <div class="color-section">
       <p class="color title">Color:</p>
       <div
         :style="{
-        backgroundColor: data.color,
-        width: '24px',
-        height: '24px',
-        borderRadius: '50%',
-        marginLeft: '8px',
-        marginRight: '8px',
-        border: '1px solid #E6E6E6',
-      }"
+          backgroundColor: data.color,
+          width: '24px',
+          height: '24px',
+          borderRadius: '50%',
+          marginLeft: '8px',
+          marginRight: '8px',
+          border: '1px solid #E6E6E6',
+        }"
       />
-      <p class="color name">{{data.colorName}}</p>
+      <p class="color name">{{ data.colorName }}</p>
     </div>
   </div>
 </template>
@@ -89,11 +89,13 @@ export default {
 .color {
   font-family: Caslon, serif;
   font-weight: 400;
+
   &.title {
     font-size: 16px;
     line-height: 19.68px;
     text-align: left;
   }
+
   &.name {
     font-size: 14px;
     text-align: left;

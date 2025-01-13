@@ -1,26 +1,27 @@
 <script>
 import arrow from '../../static/images/productDetails/arrow.svg'
+
 export default {
   name: 'ImgCarousel',
-  data(){
+  data() {
     return {
-      arrow
+      arrow,
     }
   },
   props: {
     img: {
       type: String,
-      required: true
+      required: true,
     },
     next: {
       type: Function,
-      required: true
+      required: true,
     },
     prev: {
       type: Function,
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 }
 </script>
 
@@ -31,10 +32,10 @@ export default {
 
     <!-- Navigation Buttons -->
     <button class="btn left" @click="prev">
-      <img :src="arrow" width="19.2px" height="19.2px" style="transform: scaleX(-1);"/>
+      <img :src="arrow" width="19.2px" height="19.2px" style="transform: scaleX(-1)" />
     </button>
     <button class="btn right" @click="next">
-      <img :src="arrow" width="19.2px" height="19.2px"/>
+      <img :src="arrow" width="19.2px" height="19.2px" />
     </button>
   </div>
 </template>
@@ -81,4 +82,3 @@ export default {
   }
 }
 </style>
-

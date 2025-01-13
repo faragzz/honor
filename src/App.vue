@@ -31,10 +31,7 @@ const contentBackgroundColor = computed(() => {
   <div class="layout">
     <!-- header -->
     <Header :is-mobile="isMobile" />
-    <div
-      class="content"
-      :style="{ backgroundColor: contentBackgroundColor }"
-    >
+    <div class="content" :style="{ backgroundColor: contentBackgroundColor }">
       <router-view />
       <Footer :is-mobile="isMobile" />
     </div>

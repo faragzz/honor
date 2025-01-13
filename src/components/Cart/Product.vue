@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 import fav from '../../static/images/cart/fav.svg'
 import bin from '../../static/images/cart/bin.svg'
 
@@ -19,14 +19,25 @@ export default {
       type: Number,
       required: true,
     },
+    showOptions: {
+      type: Boolean,
+      required: false,
+      default: true,
+    },
   },
 }
 </script>
 
 <template>
   <div>
-    <div style="display: flex; align-items: center;margin-top: 32px">
-      <img :src="data.img" width="103px" height="136px" />
+    <div
+      :style="{
+        display: 'flex',
+        alignItems: 'center',
+        marginTop: showOptions ? '32px' : '0',
+      }"
+    >
+      <img :src="data.img" width="103px" height="155px"/>
       <div style="margin-left: 16px">
         <p class="title">{{ data.title }}</p>
         <p class="txt">{{ data.description }}</p>
@@ -53,13 +64,13 @@ export default {
         <p class="price">$ {{ data.price }}</p>
       </div>
     </div>
-    <div style="display: flex; gap: 16px; margin-top: 21px">
-      <div style="display: flex;gap: 8px">
+    <div v-if="showOptions" style="display: flex; gap: 16px; margin-top: 21px">
+      <div style="display: flex; gap: 8px">
         <img class="icon" :src="bin" width="16px" height="16px" style="margin-top: 12px" />
         <p class="txt">Remove from cart</p>
       </div>
       <div style="display: flex; gap: 8px">
-        <img class="icon" :src="fav" width="16px" height="16px" style="margin-top: 12px"/>
+        <img class="icon" :src="fav" width="16px" height="16px" style="margin-top: 12px" />
         <p class="txt">Add to wishlist</p>
       </div>
     </div>
@@ -72,16 +83,19 @@ export default {
   font-family: Caslon, serif;
   line-height: 19.68px;
 }
+
 .txt {
   font-size: 12px;
   font-family: Caslon, serif;
   line-height: 18px;
 }
-.price{
+
+.price {
   font-size: 18px;
   font-family: Caslon, serif;
   line-height: 22.14px;
 }
+
 .color-section {
   display: flex;
   justify-content: flex-start;
@@ -107,8 +121,8 @@ export default {
     margin-bottom: 14px;
   }
 }
-.icon{
+
+.icon {
   margin-top: -2px;
 }
-
 </style>
