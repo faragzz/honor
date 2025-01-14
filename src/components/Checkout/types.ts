@@ -1,10 +1,10 @@
-type UserInfo = {
+export type UserInfo = {
   firstName: string
   lastName: string
   email: string
   phoneNumber: string
 }
-type ShippingAddressFormData = {
+export type ShippingAddressFormData = {
   country: string;
   city: string;
   region: string;
@@ -13,4 +13,4 @@ type ShippingAddressFormData = {
   postalCode: string;
 };
 
-export {UserInfo,ShippingAddressFormData};
+// export {UserInfo,ShippingAddressFormData};

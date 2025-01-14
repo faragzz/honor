@@ -1,9 +1,12 @@
 <script setup lang="ts">
+// @ts-ignore
 import State from '@/components/Checkout/State.vue'
 import ProductView from '@/components/Cart/Product.vue'
 import { computed, ref } from 'vue'
+// @ts-ignore
 import CartItem from '@/components/Cart/Item.vue'
 import ShippingAddress from '@/components/Checkout/ShippingAddress.vue'
+import Payments from '@/components/Checkout/Payments.vue'
 import type { UserInfo } from '@/components/Checkout/types.ts'
 
 const stateIndex = ref(1)
@@ -30,6 +33,9 @@ const generalProductData = {
   size: 'UK2',
   colorName: 'Cream',
 }
+const shippingAddressDone = () => {
+  stateIndex.value = 2
+}
 </script>
 
 <template>
@@ -37,10 +43,13 @@ const generalProductData = {
     <State :active="stateIndex" />
     <div class="holder">
       <div class="partOne">
-        <ShippingAddress :userData="userInfo" />
+        <div v-if="stateIndex == 2">
+          <Payments/>
+        </div>
+        <ShippingAddress @done="shippingAddressDone" />
       </div>
       <div class="partTwo">
-        <ProductView :data="generalProductData" :show-options="false" qty="1" />
+        <ProductView :data="generalProductData" :show-options="false" :qty="1" />
         <div style="height: 1px; background-color: #333333; margin-top: 24px" />
         <div style="margin-top: 32px">
           <p style="font-size: 16px">Discount Code</p>
@@ -48,7 +57,6 @@ const generalProductData = {
             <input
               type="email"
               id="email"
-              v-model="email"
               required
               placeholder="Add your discount code"
               style="width: 404px; height: 48px"
@@ -67,7 +75,7 @@ const generalProductData = {
             </div>
             <div style="height: 1px; background-color: #333; margin-top: 24px" />
             <CartItem :title="'Total'" :price="total" />
-            <button @click="goToCheckOut" class="btnA">CONTINUE TO CHECKOUT</button>
+            <button class="btnA">CONTINUE TO CHECKOUT</button>
           </div>
         </div>
       </div>

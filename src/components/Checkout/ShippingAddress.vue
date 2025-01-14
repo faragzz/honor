@@ -1,11 +1,14 @@
 <script setup lang="ts">
 import PersonalInfo from './PersonalInfo.vue'
-import { reactive, ref, watch } from 'vue'
+import { reactive, ref } from 'vue'
 import type { UserInfo, ShippingAddressFormData } from './types.ts'
+import editIcon from '@/static/images/cart/edit.svg'
+import binIcon from '@/static/images/cart/bin.svg'
 
 const openUserInfo = ref(true)
 const shippingSaved = ref(false)
 
+const emit = defineEmits(['done'])
 const userData = reactive<UserInfo>({
   firstName: '',
   lastName: '',
@@ -28,6 +31,7 @@ const shippingAddressData = reactive<ShippingAddressFormData>({
   region: '',
   streetNumber: '',
   houseNumber: '',
+  postalCode: '',
 })
 
 const savedShippingData = localStorage.getItem('shippingData')
@@ -45,22 +49,39 @@ const saveShippingInfo = () => {
     shippingAddressData.postalCode
   ) {
     localStorage.setItem('shippingData', JSON.stringify(shippingAddressData))
-    shippingSaved.value = false
-    //add emit here
+    shippingSaved.value = true
+    console.log('shippinSaved', shippingSaved.value)
+    emit('done')
     console.log('Shipping information saved successfully!')
   } else {
     console.error('Please fill out all the required fields.')
   }
 }
+const removeShoppingData = () => {
+  localStorage.removeItem('shippingData')
+  shippingSaved.value = false;
+  Object.assign(shippingAddressData, {
+    country: '',
+    city: '',
+    region: '',
+    streetNumber: '',
+    houseNumber: '',
+    postalCode: '',
+  });
+}
+const editShoppingData = () => {
+  shippingSaved.value=false;
+}
+
 </script>
 
 <template>
   <div v-if="openUserInfo" style="margin-bottom: 48px">
     <PersonalInfo :data="userData" @userInfoSaved="closeUserInfo" />
   </div>
+  <div class="title" style="margin-bottom: 32px">Shipping Address</div>
   <div v-if="!shippingSaved">
     <div class="container">
-      <div class="title" style="margin-bottom: 32px">Shipping Address</div>
       <div style="display: flex; flex-direction: column; gap: 32px">
         <!-- Country -->
         <div style="display: flex; flex-direction: column; gap: 16px">
@@ -143,11 +164,41 @@ const saveShippingInfo = () => {
       <div style="height: 1px; background-color: #333; margin-top: 62px; margin-bottom: 62px" />
     </div>
   </div>
-  <div v-else>
-    <p>Shipping information is saved!</p>
+  <div
+    v-else
+    style="
+      width: 656px;
+      height: 176px;
+      border-radius: 2px;
+      border: 1px solid #333333;
+      font-family: 'Calson', 'sans-serif';
+    "
+  >
+    <div style="margin: 24px; width: 564px; height: 125px">
+      <p style="font-size: 14px; margin-bottom: 8px">Ship to</p>
+      <div style="position: relative; display: flex; width: 100%">
+        <div style="font-size: 12px; line-height: 5px">
+          <p>{{ userData.firstName + ' ' + userData.lastName }}</p>
+          <p>{{ shippingAddressData.streetNumber + ' ' + shippingAddressData.houseNumber }}</p>
+          <p>{{ shippingAddressData.city + ', ' + shippingAddressData.region }}</p>
+          <p>{{ shippingAddressData.country }}</p>
+          <p>{{ shippingAddressData.postalCode }}</p>
+        </div>
+        <div style="position: absolute; display: flex; gap: 8px; bottom: 0; right: -70px; width: 243px; height: 18px; font-size: 12px; align-items: center;">
+          <div style="display: flex; gap: 8px; align-items: center;cursor: pointer"@click="editShoppingData">
+            <img :src="editIcon" alt="edit" style="width: 16px; height: 16px;">
+            <p style="margin-bottom: 8px">Change Address</p>
+          </div>
+          <div style="display: flex; gap: 8px; align-items: center;cursor: pointer" @click="removeShoppingData">
+            <img :src="binIcon" alt="edit" style="width: 16px; height: 16px;">
+            <p style="margin-bottom: 8px">Remove Address</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div v-if="shippingSaved" style="background-color: #333333; height: 1px;width: 100%; margin-top: 68px"/>
   </div>
 </template>
-
 
 <style scoped lang="scss">
 .container {
