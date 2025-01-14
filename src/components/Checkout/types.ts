@@ -12,5 +12,12 @@ export type ShippingAddressFormData = {
   houseNumber: string;
   postalCode: string;
 };
+export type CardDetails = {
+  name: string;
+  cardNumber: string;
+  expiryDate: string;
+  cvv: string;
+  cardType: 'mastercard'|'paypal';
+}
 
 // export {UserInfo,ShippingAddressFormData};

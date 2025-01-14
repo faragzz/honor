@@ -59,7 +59,7 @@ const saveShippingInfo = () => {
 }
 const removeShoppingData = () => {
   localStorage.removeItem('shippingData')
-  shippingSaved.value = false;
+  shippingSaved.value = false
   Object.assign(shippingAddressData, {
     country: '',
     city: '',
@@ -67,136 +67,160 @@ const removeShoppingData = () => {
     streetNumber: '',
     houseNumber: '',
     postalCode: '',
-  });
+  })
 }
 const editShoppingData = () => {
-  shippingSaved.value=false;
+  shippingSaved.value = false
 }
-
 </script>
 
 <template>
-  <div v-if="openUserInfo" style="margin-bottom: 48px">
-    <PersonalInfo :data="userData" @userInfoSaved="closeUserInfo" />
-  </div>
-  <div class="title" style="margin-bottom: 32px">Shipping Address</div>
-  <div v-if="!shippingSaved">
-    <div class="container">
-      <div style="display: flex; flex-direction: column; gap: 32px">
-        <!-- Country -->
-        <div style="display: flex; flex-direction: column; gap: 16px">
-          <label>Select shipping country</label>
-          <input
-            type="text"
-            v-model="shippingAddressData.country"
-            required
-            placeholder="Select shipping country"
-            style="width: 625px; height: 48px"
-          />
-        </div>
-        <!-- City and Region -->
-        <div style="display: flex; gap: 8px; position: relative; height: 76px; margin-bottom: 16px">
-          <div
-            style="position: absolute; left: 0; display: flex; flex-direction: column; gap: 16px"
-          >
-            <label>City</label>
+  <div>
+    <div v-if="openUserInfo" style="margin-bottom: 48px">
+      <PersonalInfo :data="userData" @userInfoSaved="closeUserInfo" />
+    </div>
+    <div class="title" style="margin-bottom: 32px">Shipping Address</div>
+    <div v-if="!shippingSaved">
+      <div class="container">
+        <div style="display: flex; flex-direction: column; gap: 32px">
+          <!-- Country -->
+          <div style="display: flex; flex-direction: column; gap: 16px">
+            <label>Select shipping country</label>
             <input
               type="text"
-              v-model="shippingAddressData.city"
+              v-model="shippingAddressData.country"
               required
-              placeholder="City"
-              style="width: 290px; height: 48px"
+              placeholder="Select shipping country"
+              style="width: 625px; height: 48px"
             />
           </div>
+          <!-- City and Region -->
           <div
-            style="position: absolute; right: 0; display: flex; flex-direction: column; gap: 16px"
+            style="display: flex; gap: 8px; position: relative; height: 76px; margin-bottom: 16px"
           >
-            <label>Region</label>
+            <div
+              style="position: absolute; left: 0; display: flex; flex-direction: column; gap: 16px"
+            >
+              <label>City</label>
+              <input
+                type="text"
+                v-model="shippingAddressData.city"
+                required
+                placeholder="City"
+                style="width: 290px; height: 48px"
+              />
+            </div>
+            <div
+              style="position: absolute; right: 0; display: flex; flex-direction: column; gap: 16px"
+            >
+              <label>Region</label>
+              <input
+                type="text"
+                v-model="shippingAddressData.region"
+                required
+                placeholder="Region"
+                style="width: 290px; height: 48px"
+              />
+            </div>
+          </div>
+          <!-- Street Number -->
+          <div style="display: flex; flex-direction: column; gap: 16px">
+            <label>Street Number</label>
             <input
               type="text"
-              v-model="shippingAddressData.region"
+              v-model="shippingAddressData.streetNumber"
               required
-              placeholder="Region"
-              style="width: 290px; height: 48px"
+              placeholder="Enter your street number"
+              style="width: 625px; height: 48px"
+            />
+          </div>
+          <!-- House Number -->
+          <div style="display: flex; flex-direction: column; gap: 16px">
+            <label>House Number</label>
+            <input
+              type="text"
+              v-model="shippingAddressData.houseNumber"
+              required
+              placeholder="Enter your house number"
+              style="width: 625px; height: 48px"
+            />
+          </div>
+          <!-- Postal Code -->
+          <div style="display: flex; flex-direction: column; gap: 16px">
+            <label>Postal Code</label>
+            <input
+              type="text"
+              v-model="shippingAddressData.postalCode"
+              required
+              placeholder="Enter your postal code"
+              style="width: 625px; height: 48px"
             />
           </div>
         </div>
-        <!-- Street Number -->
-        <div style="display: flex; flex-direction: column; gap: 16px">
-          <label>Street Number</label>
-          <input
-            type="text"
-            v-model="shippingAddressData.streetNumber"
-            required
-            placeholder="Enter your street number"
-            style="width: 625px; height: 48px"
-          />
-        </div>
-        <!-- House Number -->
-        <div style="display: flex; flex-direction: column; gap: 16px">
-          <label>House Number</label>
-          <input
-            type="text"
-            v-model="shippingAddressData.houseNumber"
-            required
-            placeholder="Enter your house number"
-            style="width: 625px; height: 48px"
-          />
-        </div>
-        <!-- Postal Code -->
-        <div style="display: flex; flex-direction: column; gap: 16px">
-          <label>Postal Code</label>
-          <input
-            type="text"
-            v-model="shippingAddressData.postalCode"
-            required
-            placeholder="Enter your postal code"
-            style="width: 625px; height: 48px"
-          />
-        </div>
-      </div>
-      <!-- Save Button -->
-      <div style="width: 100%; position: relative">
-        <div style="position: absolute; right: 0; top: 5px" class="btn" @click="saveShippingInfo">
-          Save
-        </div>
-      </div>
-      <div style="height: 1px; background-color: #333; margin-top: 62px; margin-bottom: 62px" />
-    </div>
-  </div>
-  <div
-    v-else
-    style="
-      width: 656px;
-      height: 176px;
-      border-radius: 2px;
-      border: 1px solid #333333;
-      font-family: 'Calson', 'sans-serif';
-    "
-  >
-    <div style="margin: 24px; width: 564px; height: 125px">
-      <p style="font-size: 14px; margin-bottom: 8px">Ship to</p>
-      <div style="position: relative; display: flex; width: 100%">
-        <div style="font-size: 12px; line-height: 5px">
-          <p>{{ userData.firstName + ' ' + userData.lastName }}</p>
-          <p>{{ shippingAddressData.streetNumber + ' ' + shippingAddressData.houseNumber }}</p>
-          <p>{{ shippingAddressData.city + ', ' + shippingAddressData.region }}</p>
-          <p>{{ shippingAddressData.country }}</p>
-          <p>{{ shippingAddressData.postalCode }}</p>
-        </div>
-        <div style="position: absolute; display: flex; gap: 8px; bottom: 0; right: -70px; width: 243px; height: 18px; font-size: 12px; align-items: center;">
-          <div style="display: flex; gap: 8px; align-items: center;cursor: pointer"@click="editShoppingData">
-            <img :src="editIcon" alt="edit" style="width: 16px; height: 16px;">
-            <p style="margin-bottom: 8px">Change Address</p>
+        <!-- Save Button -->
+        <div style="width: 100%; position: relative">
+          <div style="position: absolute; right: 0; top: 5px" class="btn" @click="saveShippingInfo">
+            Save
           </div>
-          <div style="display: flex; gap: 8px; align-items: center;cursor: pointer" @click="removeShoppingData">
-            <img :src="binIcon" alt="edit" style="width: 16px; height: 16px;">
-            <p style="margin-bottom: 8px">Remove Address</p>
+        </div>
+        <div style="height: 1px; background-color: #333; margin-top: 62px; margin-bottom: 62px" />
+      </div>
+    </div>
+    <div
+      v-else
+      style="
+        width: 656px;
+        height: 176px;
+        border-radius: 2px;
+        border: 1px solid #333333;
+        font-family: 'Calson', 'sans-serif';
+      "
+    >
+      <div style="margin: 24px; width: 564px; height: 125px">
+        <p style="font-size: 14px; margin-bottom: 8px">Ship to</p>
+        <div style="position: relative; display: flex; width: 100%">
+          <div style="font-size: 12px; line-height: 5px">
+            <p>{{ userData.firstName + ' ' + userData.lastName }}</p>
+            <p>{{ shippingAddressData.streetNumber + ' ' + shippingAddressData.houseNumber }}</p>
+            <p>{{ shippingAddressData.city + ', ' + shippingAddressData.region }}</p>
+            <p>{{ shippingAddressData.country }}</p>
+            <p>{{ shippingAddressData.postalCode }}</p>
+          </div>
+          <div
+            style="
+              position: absolute;
+              display: flex;
+              gap: 8px;
+              bottom: 0;
+              right: -70px;
+              width: 243px;
+              height: 18px;
+              font-size: 12px;
+              align-items: center;
+            "
+          >
+            <div
+              style="display: flex; gap: 8px; align-items: center; cursor: pointer"
+              @click="editShoppingData"
+            >
+              <img :src="editIcon" alt="edit" style="width: 16px; height: 16px" />
+              <p style="margin-bottom: 8px">Change Address</p>
+            </div>
+            <div
+              style="display: flex; gap: 8px; align-items: center; cursor: pointer"
+              @click="removeShoppingData"
+            >
+              <img :src="binIcon" alt="edit" style="width: 16px; height: 16px" />
+              <p style="margin-bottom: 8px">Remove Address</p>
+            </div>
           </div>
         </div>
       </div>
+      <div
+        v-if="shippingSaved"
+        style="background-color: #333333; height: 1px; width: 100%; margin-top: 68px;"
+      />
     </div>
-    <div v-if="shippingSaved" style="background-color: #333333; height: 1px;width: 100%; margin-top: 68px"/>
   </div>
 </template>
 

@@ -2,17 +2,38 @@
 // @ts-ignore
 import State from '@/components/Checkout/State.vue'
 import ProductView from '@/components/Cart/Product.vue'
-import { computed, ref } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 // @ts-ignore
 import CartItem from '@/components/Cart/Item.vue'
 import ShippingAddress from '@/components/Checkout/ShippingAddress.vue'
 import Payments from '@/components/Checkout/Payments.vue'
-import type { UserInfo } from '@/components/Checkout/types.ts'
+import Confirmation from '@/components/Checkout/confirmation.vue'
+import type { CardDetails, UserInfo } from '@/components/Checkout/types.ts'
 
-const stateIndex = ref(1)
+const stateIndex = ref(3)
 const subtotal = ref(100)
 const discount = ref(0)
 const shippingCost = ref(50)
+const btnFormText = ['CONTINUE TO CHECKOUT', 'PLACE ORDER', 'CONTINUE SHOPPING']
+
+const isMobile = ref(false)
+
+// Function to check if the window width is less than 1000px
+const checkIfMobile = () => {
+  isMobile.value = window.innerWidth <= 1000
+}
+
+// Run the check when the component is mounted
+onMounted(() => {
+  checkIfMobile()
+  window.addEventListener('resize', checkIfMobile) // Update on window resize
+})
+
+// Watch the `isMobile` value for changes
+watch(isMobile, (newValue) => {
+  console.log('isMobile changed:', newValue)
+  // You can perform any logic here when `isMobile` changes
+})
 
 const userInfo = ref<UserInfo>({
   firstName: '',
@@ -21,6 +42,34 @@ const userInfo = ref<UserInfo>({
   phoneNumber: '',
 })
 
+const cardDetails = ref<CardDetails>({
+  name: '',
+  cardNumber: '',
+  expiryDate: '',
+  cvv: '',
+  cardType: 'mastercard',
+})
+const submitOrder = () => {
+  if (stateIndex.value == 1) {
+    alert('Please enter all your details first and save it')
+    return
+  }
+  if (stateIndex.value == 2) {
+    if (
+      !cardDetails.value.name ||
+      !cardDetails.value.cardNumber ||
+      !cardDetails.value.expiryDate ||
+      !cardDetails.value.cvv ||
+      !cardDetails.value.cardType
+    ) {
+      alert('Please fill in all the payment details')
+      return
+    }
+    stateIndex.value = 3
+    return
+  }
+  console.log(cardDetails.value)
+}
 const total = computed(() => subtotal.value + shippingCost.value - discount.value)
 const generalProductData = {
   img: 'https://honornyc.com/wp-content/uploads/2020/05/Honor_Resort2015_Look_01.jpg',
@@ -40,15 +89,24 @@ const shippingAddressDone = () => {
 
 <template>
   <div class="container">
-    <State :active="stateIndex" />
-    <div class="holder">
-      <div class="partOne">
-        <div v-if="stateIndex == 2">
-          <Payments/>
+    <div :style="{ transform: isMobile ? 'scale(0.7)' : '' }">
+      <State :active="stateIndex" />
+    </div>
+    <div v-if="stateIndex <= 2" class="holder">
+      <div class="partOne" :style="{ transform: isMobile ? 'scale(0.5) translateY(-1000px)' : '' }">
+        <div style="padding-bottom: 100px">
+          <div v-if="stateIndex == 2">
+            <Payments :card-details="cardDetails" />
+          </div>
+          <div style="margin-top: 48px">
+            <ShippingAddress @done="shippingAddressDone" />
+          </div>
         </div>
-        <ShippingAddress @done="shippingAddressDone" />
       </div>
-      <div class="partTwo">
+      <div
+        class="partTwo"
+        :style="{ transform: isMobile ? 'scale(0.55) translateY(-2000px)' : '' }"
+      >
         <ProductView :data="generalProductData" :show-options="false" :qty="1" />
         <div style="height: 1px; background-color: #333333; margin-top: 24px" />
         <div style="margin-top: 32px">
@@ -75,10 +133,13 @@ const shippingAddressDone = () => {
             </div>
             <div style="height: 1px; background-color: #333; margin-top: 24px" />
             <CartItem :title="'Total'" :price="total" />
-            <button class="btnA">CONTINUE TO CHECKOUT</button>
+            <button class="btnA" @click="submitOrder">{{ btnFormText[stateIndex - 1] }}</button>
           </div>
         </div>
       </div>
+    </div>
+    <div v-if="stateIndex == 3">
+      <Confirmation />
     </div>
   </div>
 </template>
@@ -93,11 +154,26 @@ const shippingAddressDone = () => {
   font-family: 'Calson', 'sans-serif';
 }
 
+@media (max-width: 1000px) {
+  .container {
+    overflow: hidden;
+  }
+}
+
 .holder {
   display: flex;
   margin-top: 96px;
   justify-content: center;
   gap: 119px;
+}
+
+@media (max-width: 1000px) {
+  .holder {
+    flex-direction: column;
+    gap: 0;
+    padding-bottom: 100px;
+    overflow: hidden;
+  }
 }
 
 .partOne {
@@ -111,6 +187,14 @@ const shippingAddressDone = () => {
   width: 545px;
   //background-color: #0D0D0D;
   height: auto;
+}
+
+@media (max-width: 1000px) {
+  .partTwo {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+  }
 }
 
 input {
@@ -142,6 +226,7 @@ input {
 }
 
 .btnA {
+  font-family: 'Calson', 'sans-serif';
   background-color: var(--dark-text-color);
   width: 100%;
   height: 48px;
