@@ -8,38 +8,28 @@ import CartItem from '@/components/Cart/Item.vue'
 import ShippingAddress from '@/components/Checkout/ShippingAddress.vue'
 import Payments from '@/components/Checkout/Payments.vue'
 import Confirmation from '@/components/Checkout/confirmation.vue'
-import type { CardDetails, UserInfo } from '@/components/Checkout/types.ts'
+import type { CardDetails } from '@/components/Checkout/types.ts'
 
 const stateIndex = ref(3)
 const subtotal = ref(100)
 const discount = ref(0)
 const shippingCost = ref(50)
+const total = computed(() => subtotal.value + shippingCost.value - discount.value)
 const btnFormText = ['CONTINUE TO CHECKOUT', 'PLACE ORDER', 'CONTINUE SHOPPING']
 
 const isMobile = ref(false)
 
-// Function to check if the window width is less than 1000px
 const checkIfMobile = () => {
   isMobile.value = window.innerWidth <= 1000
 }
 
-// Run the check when the component is mounted
 onMounted(() => {
   checkIfMobile()
-  window.addEventListener('resize', checkIfMobile) // Update on window resize
+  window.addEventListener('resize', checkIfMobile)
 })
 
-// Watch the `isMobile` value for changes
 watch(isMobile, (newValue) => {
   console.log('isMobile changed:', newValue)
-  // You can perform any logic here when `isMobile` changes
-})
-
-const userInfo = ref<UserInfo>({
-  firstName: '',
-  lastName: '',
-  email: '',
-  phoneNumber: '',
 })
 
 const cardDetails = ref<CardDetails>({
@@ -70,7 +60,7 @@ const submitOrder = () => {
   }
   console.log(cardDetails.value)
 }
-const total = computed(() => subtotal.value + shippingCost.value - discount.value)
+
 const generalProductData = {
   img: 'https://honornyc.com/wp-content/uploads/2020/05/Honor_Resort2015_Look_01.jpg',
   trending: true,
