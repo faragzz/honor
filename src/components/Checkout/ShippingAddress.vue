@@ -50,7 +50,7 @@ const saveShippingInfo = () => {
   ) {
     localStorage.setItem('shippingData', JSON.stringify(shippingAddressData))
     shippingSaved.value = true
-    console.log('shippinSaved', shippingSaved.value)
+    console.log('shippingSaved', shippingSaved.value)
     emit('done')
     console.log('Shipping information saved successfully!')
   } else {
@@ -76,7 +76,7 @@ const editShoppingData = () => {
 
 <template>
   <div>
-    <div v-if="openUserInfo" style="margin-bottom: 48px">
+    <div v-show="openUserInfo" style="margin-bottom: 48px">
       <PersonalInfo :data="userData" @userInfoSaved="closeUserInfo" />
     </div>
     <div class="title" style="margin-bottom: 32px">Shipping Address</div>

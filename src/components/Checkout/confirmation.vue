@@ -93,9 +93,10 @@ const generalProductData = {
       </div>
       <div class="divider" />
       <CartItem :title="'Total'" :price="total" />
+      <RouterLink to="/"   class="btnA custom-style"><p>CONTINUE SHOPPING</p></RouterLink>
     </div>
 
-    <button class="btnA">CONTINUE SHOPPING</button>
+
   </div>
 </template>
 
@@ -165,6 +166,9 @@ const generalProductData = {
 }
 
 .btnA {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-family: 'Calson', 'sans-serif';
   background-color: var(--dark-text-color);
   width: 100%;
@@ -172,6 +176,7 @@ const generalProductData = {
   margin: 32px 0 85px;
   color: white;
   cursor: pointer;
+  text-decoration: none;
 }
 
 @media (max-width: 768px) {
@@ -199,7 +204,11 @@ const generalProductData = {
   }
 
   .btnA {
+    padding: 4px;
     margin-bottom: 48px;
   }
+}
+.RouterLink{
+
 }
 </style>

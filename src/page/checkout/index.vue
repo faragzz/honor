@@ -10,7 +10,7 @@ import Payments from '@/components/Checkout/Payments.vue'
 import Confirmation from '@/components/Checkout/confirmation.vue'
 import type { CardDetails } from '@/components/Checkout/types.ts'
 
-const stateIndex = ref(3)
+const stateIndex = ref(1)
 const subtotal = ref(100)
 const discount = ref(0)
 const shippingCost = ref(50)
@@ -22,6 +22,13 @@ const isMobile = ref(false)
 const checkIfMobile = () => {
   isMobile.value = window.innerWidth <= 1000
 }
+
+const partTwoTransform = computed(() => {
+  if (!isMobile.value) return ''
+  const baseTranslateY = -2500
+  const offset = 500
+  return `scale(0.55) translateY(${baseTranslateY - (stateIndex.value - 1) * offset}px)`
+})
 
 onMounted(() => {
   checkIfMobile()
@@ -78,63 +85,76 @@ const shippingAddressDone = () => {
 </script>
 
 <template>
-  <div class="container">
-    <div :style="{ transform: isMobile ? 'scale(0.7)' : '' }">
-      <State :active="stateIndex" />
-    </div>
-    <div v-if="stateIndex <= 2" class="holder">
-      <div class="partOne" :style="{ transform: isMobile ? 'scale(0.5) translateY(-1000px)' : '' }">
-        <div style="padding-bottom: 100px">
-          <div v-if="stateIndex == 2">
-            <Payments :card-details="cardDetails" />
-          </div>
-          <div style="margin-top: 48px">
-            <ShippingAddress @done="shippingAddressDone" />
-          </div>
-        </div>
+  <div :style="isMobile ? { height: '1500px', overflowY : 'hidden' } : ''">
+    <div class="container">
+      <div :style="{ transform: isMobile ? 'scale(0.7)' : '' }">
+        <State :active="stateIndex" />
       </div>
-      <div
-        class="partTwo"
-        :style="{ transform: isMobile ? 'scale(0.55) translateY(-2000px)' : '' }"
-      >
-        <ProductView :data="generalProductData" :show-options="false" :qty="1" />
-        <div style="height: 1px; background-color: #333333; margin-top: 24px" />
-        <div style="margin-top: 32px">
-          <p style="font-size: 16px">Discount Code</p>
-          <div style="display: flex; gap: 8px; margin-top: 24px">
-            <input
-              type="email"
-              id="email"
-              required
-              placeholder="Add your discount code"
-              style="width: 404px; height: 48px"
-            />
-            <div class="btn">Apply</div>
-          </div>
-        </div>
-        <div style="height: 1px; background-color: #333333; margin-top: 24px" />
-        <div class="costSection">
-          <p class="title">Order Summary</p>
-          <div style="margin-top: 32px">
-            <div style="display: flex; flex-direction: column; gap: 24px">
-              <CartItem title="Subtotal" :price="subtotal" />
-              <CartItem title="Discount" :price="discount" />
-              <CartItem title="Shipment cost" :price="shippingCost" />
+      <div v-if="stateIndex <= 2" class="holder">
+        <div
+          class="partOne"
+          :style="{ transform: isMobile ? 'scale(0.5) translateY(-1000px) ' : '' }"
+        >
+          <div style="padding-bottom: 100px;">
+            <div v-if="stateIndex == 2" >
+              <Payments :card-details="cardDetails" />
             </div>
-            <div style="height: 1px; background-color: #333; margin-top: 24px" />
-            <CartItem :title="'Total'" :price="total" />
-            <button class="btnA" @click="submitOrder">{{ btnFormText[stateIndex - 1] }}</button>
+            <div style="margin-top: 48px">
+              <ShippingAddress @done="shippingAddressDone" />
+            </div>
+          </div>
+        </div>
+        <div class="partTwo" :style="{ transform: partTwoTransform }">
+          <ProductView :data="generalProductData" :show-options="false" :qty="1" />
+          <div style="height: 1px; background-color: #333333; margin-top: 24px" />
+          <div style="margin-top: 32px">
+            <p style="font-size: 16px">Discount Code</p>
+            <div style="display: flex; gap: 8px; margin-top: 24px">
+              <input
+                type="email"
+                id="email"
+                required
+                placeholder="Add your discount code"
+                style="width: 404px; height: 48px"
+              />
+              <div class="btn">Apply</div>
+            </div>
+          </div>
+          <div style="height: 1px; background-color: #333333; margin-top: 24px" />
+          <div class="costSection">
+            <p class="title">Order Summary</p>
+            <div style="margin-top: 32px">
+              <div style="display: flex; flex-direction: column; gap: 24px">
+                <CartItem title="Subtotal" :price="subtotal" />
+                <CartItem title="Discount" :price="discount" />
+                <CartItem title="Shipment cost" :price="shippingCost" />
+              </div>
+              <div style="height: 1px; background-color: #333; margin-top: 24px" />
+              <CartItem :title="'Total'" :price="total" />
+              <button class="btnA" @click="submitOrder">{{ btnFormText[stateIndex - 1] }}</button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div v-if="stateIndex == 3">
-      <Confirmation />
+      <div v-if="stateIndex == 3">
+        <Confirmation />
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped lang="scss">
+.control {
+  height: auto;
+  overflow: visible;
+}
+
+@media (max-width: 1000px) {
+  .custom-div {
+    height: 1500px;
+    overflow: hidden;
+  }
+}
 .container {
   display: flex;
   flex-direction: column;
@@ -142,11 +162,9 @@ const shippingAddressDone = () => {
   min-height: 100vh;
   margin-top: 88px;
   font-family: 'Calson', 'sans-serif';
-}
-
-@media (max-width: 1000px) {
-  .container {
-    overflow: hidden;
+  @media (max-width: 1000px) {
+    overflow-y: auto;
+    overflow-x: hidden;
   }
 }
 
@@ -184,6 +202,10 @@ const shippingAddressDone = () => {
     display: flex;
     flex-direction: column;
     margin: auto;
+  }
+  .partOne {
+    height: 2000px;
+    overflow: auto;
   }
 }
 
