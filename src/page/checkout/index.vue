@@ -25,9 +25,9 @@ const checkIfMobile = () => {
 
 const partTwoTransform = computed(() => {
   if (!isMobile.value) return ''
-  const baseTranslateY = -2500
+  const baseTranslateY = -2300
   const offset = 500
-  return `scale(0.55) translateY(${baseTranslateY - (stateIndex.value - 1) * offset}px)`
+  return `scale(0.6) translateY(${baseTranslateY - (stateIndex.value - 1) * offset}px)`
 })
 
 onMounted(() => {
@@ -52,6 +52,11 @@ const submitOrder = () => {
     return
   }
   if (stateIndex.value == 2) {
+    const userInfo = JSON.parse(localStorage.getItem('userInfo') || '{}')
+    if (!userInfo) {
+      alert('Please enter all personal details first and save it')
+      return
+    }
     if (
       !cardDetails.value.name ||
       !cardDetails.value.cardNumber ||
@@ -85,9 +90,9 @@ const shippingAddressDone = () => {
 </script>
 
 <template>
-  <div :style="isMobile ? { height: '1500px', overflowY : 'hidden' } : ''">
+  <div :style="isMobile ? { height: '1500px', overflowY: 'hidden' } : ''">
     <div class="container">
-      <div :style="{ transform: isMobile ? 'scale(0.7)' : '' }">
+      <div :style="{ transform: isMobile ? 'scale(0.75)' : '' }">
         <State :active="stateIndex" />
       </div>
       <div v-if="stateIndex <= 2" class="holder">
@@ -95,8 +100,8 @@ const shippingAddressDone = () => {
           class="partOne"
           :style="{ transform: isMobile ? 'scale(0.5) translateY(-1000px) ' : '' }"
         >
-          <div style="padding-bottom: 100px;">
-            <div v-if="stateIndex == 2" >
+          <div style="padding-bottom: 100px">
+            <div v-if="stateIndex == 2">
               <Payments :card-details="cardDetails" />
             </div>
             <div style="margin-top: 48px">
@@ -155,6 +160,7 @@ const shippingAddressDone = () => {
     overflow: hidden;
   }
 }
+
 .container {
   display: flex;
   flex-direction: column;

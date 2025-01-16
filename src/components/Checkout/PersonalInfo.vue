@@ -72,9 +72,6 @@ const saveUserInfo = () => {
           placeholder="Enter your email address"
           style="width: 625px; height: 48px"
         />
-        <span v-if="!validateEmail(data.email)" style="color: red; font-size: 12px">
-          Please enter a valid email address.
-        </span>
       </div>
       <div style="display: flex; flex-direction: column; gap: 16px">
         <label>Phone Number</label>
@@ -86,9 +83,6 @@ const saveUserInfo = () => {
           placeholder="Enter your phone number"
           style="width: 625px; height: 48px"
         />
-        <span v-if="!validatePhoneNumber(data.phoneNumber)" style="color: red; font-size: 12px">
-          Please enter a valid phone number not less than 9.
-        </span>
       </div>
     </div>
     <div style="width: 100%; position: relative">

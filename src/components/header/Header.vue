@@ -89,6 +89,7 @@ defineProps({
     </div>
   </div>
   <div v-if="isMobile" style="height: 80px; background-color: #0b0b0b; position: relative">
+    <router-link class="header__nav__link" to="/">
     <img
       :src="Logo"
       alt="Logo"
@@ -96,6 +97,7 @@ defineProps({
       height="52px"
       style="position: absolute; left: 24px; top: 16px"
     />
+    </router-link>
     <img
       :src="menuOpened ? Close : Menu"
       @click="toggleMenu"
@@ -127,6 +129,7 @@ defineProps({
         </div>
         <div style="display: flex; flex-direction: column; gap: 18px">
           <RouterLink class="header__nav__link" to="/account">ACCOUNT</RouterLink>
+          <RouterLink class="header__nav__link" to="/cart">CART</RouterLink>
           <RouterLink class="header__nav__link" to="/by-appointment">BY APPOINTMENT</RouterLink>
         </div>
         <div style="display: flex; flex-direction: column; gap: 18px">

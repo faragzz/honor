@@ -54,7 +54,7 @@ export default {
     <!-- Line 2 -->
     <div :class="getLineClass(2)"></div>
     <!-- Circle 3 -->
-    <div class="outerCircle">
+    <div class="outerCircle last">
       <div :class="getCircleClass(3)">
         <p class="step">3</p>
       </div>
@@ -93,7 +93,9 @@ export default {
   margin-left: -20px;
   margin-right: -15px;
   background-color: #ccc;
-
+  @media (max-width: 1000px) {
+    margin-bottom: 70px;
+  }
   &.active {
     background-color: var(--dark-text-color);
   }
@@ -109,6 +111,12 @@ export default {
   justify-content: center;
   align-items: center;
   margin: 0;
+  &.last{
+    margin-bottom: 0;
+    @media (max-width: 1000px) {
+      margin-bottom: 16px;
+    }
+  }
 }
 
 .circle {

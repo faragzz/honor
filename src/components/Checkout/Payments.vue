@@ -150,6 +150,7 @@ const validateCardNumber = (event: Event) => {
 
 <style scoped lang="scss">
 .containerPayment {
+  padding: 2px;
   display: flex;
   flex-direction: column;
   align-items: start;

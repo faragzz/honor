@@ -46,15 +46,15 @@ const saveShippingInfo = () => {
     shippingAddressData.region &&
     shippingAddressData.streetNumber &&
     shippingAddressData.houseNumber &&
-    shippingAddressData.postalCode
+    shippingAddressData.postalCode&&
+    openUserInfo.value===false
   ) {
     localStorage.setItem('shippingData', JSON.stringify(shippingAddressData))
     shippingSaved.value = true
     console.log('shippingSaved', shippingSaved.value)
     emit('done')
-    console.log('Shipping information saved successfully!')
   } else {
-    console.error('Please fill out all the required fields.')
+    alert('Please fill out all the required fields and save the personal info first.')
   }
 }
 const removeShoppingData = () => {
@@ -174,12 +174,13 @@ const editShoppingData = () => {
         border-radius: 2px;
         border: 1px solid #333333;
         font-family: 'Calson', 'sans-serif';
+        transform: translateX(-0.6px);
       "
     >
       <div style="margin: 24px; width: 564px; height: 125px">
         <p style="font-size: 14px; margin-bottom: 8px">Ship to</p>
         <div style="position: relative; display: flex; width: 100%">
-          <div style="font-size: 12px; line-height: 5px">
+          <div class="list-data">
             <p>{{ userData.firstName + ' ' + userData.lastName }}</p>
             <p>{{ shippingAddressData.streetNumber + ' ' + shippingAddressData.houseNumber }}</p>
             <p>{{ shippingAddressData.city + ', ' + shippingAddressData.region }}</p>
@@ -218,7 +219,7 @@ const editShoppingData = () => {
       </div>
       <div
         v-if="shippingSaved"
-        style="background-color: #333333; height: 1px; width: 100%; margin-top: 68px;"
+        style="background-color: #333333; height: 1px; width: 100%; margin-top: 68px"
       />
     </div>
   </div>
@@ -230,6 +231,14 @@ const editShoppingData = () => {
   color: var(--dark-text-color);
   font-size: 14px;
   min-height: 604px;
+}
+
+.list-data {
+  font-size: 12px;
+  line-height: 5px;
+  @media (max-width: 1000px) {
+    font-size: 14px;
+  }
 }
 
 input {
